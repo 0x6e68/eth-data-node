@@ -12,6 +12,10 @@ import {TransactionListItem} from "./transaction-list-item/transaction-list-item
 import {UploadFileComponent} from "./upload-file-form/upload-file-form.component";
 import {FileDropModule} from "ngx-file-drop";
 import {ItemImageDataComponent} from "./transaction-list-item/item-data/image/item-image-data.component";
+import { MessageInputComponent } from './upload/components/message-input/message-input.component';
+import { UploadCostInfoComponent } from './upload/components/upload-cost-info/upload-cost-info.component';
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -21,12 +25,16 @@ import {ItemImageDataComponent} from "./transaction-list-item/item-data/image/it
     ItemImageDataComponent,
     ItemBlobDataComponent,
     TransactionListItem,
-    UploadFileComponent
+    UploadFileComponent,
+    MessageInputComponent,
+    UploadCostInfoComponent,
   ],
   imports: [
     BrowserModule,
     FileDropModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     DataNodeService,

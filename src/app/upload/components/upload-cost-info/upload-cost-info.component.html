@@ -1,0 +1,39 @@
+<div>
+  <p>
+    data size (bytes): {{dataSize}}
+  </p>
+
+  <p>
+    meta size (bytes): {{metaSize}}
+  </p>
+
+  <p>
+    total size (bytes): {{getTotalSize()}}
+  </p>
+
+  <p>
+    estimated gas: {{estimatedGas}}
+  </p>
+
+  <p>
+    gas prize (fast): {{gasPrizeInfo?.fast}} GWei => total: {{calcTotalGasPrizeEther(gasPrizeInfo?.fast)}} Ether
+  </p>
+
+  <p>
+    gas prize (fastest): {{gasPrizeInfo?.fastest}} GWei => total: {{calcTotalGasPrizeEther(gasPrizeInfo?.fastest)}} Ether
+  </p>
+
+  <p>
+    gas prize (safeLow): {{gasPrizeInfo?.safeLow}} GWei => total: {{calcTotalGasPrizeEther(gasPrizeInfo?.safeLow)}} Ether
+  </p>
+
+  <p>
+    gas prize (standart): {{gasPrizeInfo?.standard}} GWei => total: {{calcTotalGasPrizeEther(gasPrizeInfo?.standard)}} Ether
+  </p>
+
+  <p>
+    transaction cost in $:
+  </p>
+
+</div>
+

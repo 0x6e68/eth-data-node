@@ -30,6 +30,14 @@ export class DataNodeService {
     transaction.send({from: account});
   }
 
+  async estimateGasForPostingDataTransaction(data: ArrayBuffer, metaData: Object): Promise<number>{
+    const web3 = await this.web3Service.getWeb3();
+    const account = await this.web3Service.getAccount();
+
+    const transaction = await this.createTransaction(data, metaData);
+    return transaction.estimateGas({from: account});
+  }
+
   async getPastEvents(): Promise<DataTransactionModel[]> {
     return this.executeOnContract(contract => {
       return contract.getPastEvents('DataAdded', {

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as Web3 from 'web3';
-import {bytesToHex, hexToBytes, hexToString, stringToHex} from "web3-utils";
+import {bytesToHex, hexToBytes, hexToString, stringToHex, toWei, fromWei} from "web3-utils";
 
 @Injectable()
 export class Web3Service {
@@ -69,6 +69,19 @@ export class Web3Service {
 
   stringToHex(input: string): string{
     return stringToHex(input);
+  }
+
+  toWei(value: number | string, unit: string): number{
+    return toWei(value, unit);
+  }
+
+  fromWei(value: number | string, unit: string): number{
+    return fromWei(value, unit);
+  }
+
+  fromUnitToUnit(value: number | string, fromUnit: string, toUnit: string){
+    const weiValue = this.toWei(value, fromUnit);
+    return fromWei(weiValue, toUnit);
   }
 
   async getTransaction(hash: string): Promise<any>{
