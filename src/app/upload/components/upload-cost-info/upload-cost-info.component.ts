@@ -19,14 +19,9 @@ export class UploadCostInfoComponent implements OnChanges, OnInit {
   metaSize: number;
   estimatedGas: number;
 
-  gasPrizeInfo: GasPriceInfo;
+  private encoder:TextEncoder = new TextEncoder();
 
-
-
-  constructor(private dataNodeService: DataNodeService,
-              private gasPrizeService: GasPriceInfoService,
-              private web3: Web3Service,
-              private ethPrizeService: EtherPrizeInfoService) {
+  constructor(private dataNodeService: DataNodeService) {
   }
 
 
@@ -37,21 +32,8 @@ export class UploadCostInfoComponent implements OnChanges, OnInit {
   }
 
   ngOnInit(): void {
-    this.gasPrizeService.getGasPriceInfo().subscribe((value)=>{
-      this.gasPrizeInfo = value;
-    });
   }
 
-  calcTotalGasPrizeEther(gasPrizeGwei: number){
-    if(gasPrizeGwei && this.estimatedGas){
-      return this.web3.fromUnitToUnit(gasPrizeGwei, 'gwei', 'ether') * this.estimatedGas;
-    }
-    return "N/A";
-  }
-
-  async calcTotalDollarPrize(totalEtherCost: number){
-    return (await this.ethPrizeService.getEthDollarPriceInfo()) * totalEtherCost;
-  }
 
   private async analyzeBlob() {
     const reader = new FileReader();
@@ -65,7 +47,7 @@ export class UploadCostInfoComponent implements OnChanges, OnInit {
 
       const metaDataJSON = JSON.stringify(metaData);
 
-      this.metaSize = metaDataJSON.length;
+      this.metaSize = this.encoder.encode(metaDataJSON).byteLength;
       this.dataSize = result.byteLength;
 
       await this.updateEstimatedGas(result, metaData);
@@ -81,6 +63,5 @@ export class UploadCostInfoComponent implements OnChanges, OnInit {
   getTotalSize(): number {
     return this.dataSize + this.metaSize;
   }
-
 
 }

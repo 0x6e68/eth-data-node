@@ -1,7 +1,7 @@
 import {Injectable, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {GasPriceInfo} from "./gas-price-info.service";
+import {map} from "rxjs/operators";
 
 
 export interface EthMarketEntry {
@@ -19,22 +19,19 @@ export interface EthMarket {
 @Injectable({
   providedIn: 'root'
 })
-export class EtherPrizeInfoService{
+export class EtherPrizeInfoService implements OnInit {
 
   private key: string = 'EFU4FNSzC2g93xo04h3stHKGa0VOiG';
   private url: string = `https://www.worldcoinindex.com/apiservice/ticker?key=${this.key}&label=ethbtc&fiat=usd`;
 
-  ethDollarPrice: number= 0;
+  ethDollarPrice: Observable<number>;
 
   constructor(private http: HttpClient) {
+    this.ethDollarPrice = this.http.get<EthMarket>(this.url)
+      .pipe(map(ethMarket => ethMarket.Markets[0].Price));
   }
 
-  async getEthDollarPriceInfo(): Promise<number> {
-    if (!this.ethDollarPrice && this.url) {
-      //const ethMarket = await this.http.get<EthMarket>(this.url).toPromise();
-      //this.url = undefined;
-      //this.ethDollarPrice = ethMarket.Markets[0].Price;
-    }
-    return this.ethDollarPrice;
+  ngOnInit(): void {
+
   }
 }

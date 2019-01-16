@@ -9,6 +9,8 @@ export interface GasPriceInfo {
   fastest: number;
 }
 
+export type GasPriceType = 'safeLow' | 'standard' | 'fast' | 'fastest';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,16 +21,11 @@ export class GasPriceInfoService implements OnInit {
   gasPriceInfoObservable: Observable<GasPriceInfo>;
 
   constructor(private http: HttpClient) {
+    this.gasPriceInfoObservable = this.http.get<GasPriceInfo>(this.url);
   }
 
   ngOnInit(): void {
+
   }
 
-  getGasPriceInfo(): Observable<GasPriceInfo> {
-    if (!this.gasPriceInfoObservable) {
-      this.gasPriceInfoObservable = this.http.get<GasPriceInfo>(this.url);
-      this.url = undefined;
-    }
-    return this.gasPriceInfoObservable;
-  }
 }

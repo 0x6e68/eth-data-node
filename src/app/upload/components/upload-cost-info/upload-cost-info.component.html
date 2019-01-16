@@ -16,23 +16,19 @@
   </p>
 
   <p>
-    gas prize (fast): {{gasPrizeInfo?.fast}} GWei => total: {{calcTotalGasPrizeEther(gasPrizeInfo?.fast)}} Ether
+    <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="standard"></app-transaction-cost-info>
   </p>
 
   <p>
-    gas prize (fastest): {{gasPrizeInfo?.fastest}} GWei => total: {{calcTotalGasPrizeEther(gasPrizeInfo?.fastest)}} Ether
+    <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="safeLow"></app-transaction-cost-info>
   </p>
 
   <p>
-    gas prize (safeLow): {{gasPrizeInfo?.safeLow}} GWei => total: {{calcTotalGasPrizeEther(gasPrizeInfo?.safeLow)}} Ether
+    <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="fast"></app-transaction-cost-info>
   </p>
 
   <p>
-    gas prize (standart): {{gasPrizeInfo?.standard}} GWei => total: {{calcTotalGasPrizeEther(gasPrizeInfo?.standard)}} Ether
-  </p>
-
-  <p>
-    transaction cost in $:
+    <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="fastest"></app-transaction-cost-info>
   </p>
 
 </div>

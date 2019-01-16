@@ -79,7 +79,7 @@ export class Web3Service {
     return fromWei(value, unit);
   }
 
-  fromUnitToUnit(value: number | string, fromUnit: string, toUnit: string){
+  fromUnitToUnit(value: string, fromUnit: string, toUnit: string){
     const weiValue = this.toWei(value, fromUnit);
     return fromWei(weiValue, toUnit);
   }

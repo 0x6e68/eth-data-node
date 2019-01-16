@@ -1,0 +1,23 @@
+<div>
+  <b>{{prizeType}}:</b>
+  <p>
+    Gas Prize GWei: {{gasPrizeGwei}}
+  </p>
+
+  <p>
+    Gas Prize Ether: {{gasPrizeEther}}
+  </p>
+
+  <p>
+    Gas Prize Dollar: {{(etherPrizeDollar * gasPrizeEther)| number:'1.0-10'}}
+  </p>
+
+  <p>
+    Transaction Cost Ether: {{estimatedGas * gasPrizeEther}}
+  </p>
+
+  <p>
+    Transaction Cost Dollar: {{estimatedGas * etherPrizeDollar * gasPrizeEther}}
+  </p>
+</div>
+

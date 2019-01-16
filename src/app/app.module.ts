@@ -16,6 +16,7 @@ import { MessageInputComponent } from './upload/components/message-input/message
 import { UploadCostInfoComponent } from './upload/components/upload-cost-info/upload-cost-info.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { TransactionCostInfoComponent } from './upload/components/transaction-cost-info/transaction-cost-info.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {HttpClientModule} from "@angular/common/http";
     UploadFileComponent,
     MessageInputComponent,
     UploadCostInfoComponent,
+    TransactionCostInfoComponent,
   ],
   imports: [
     BrowserModule,
