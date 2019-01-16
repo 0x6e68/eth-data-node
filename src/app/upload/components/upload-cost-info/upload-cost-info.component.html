@@ -1,35 +1,50 @@
 <div>
-  <p>
-    data size (bytes): {{dataSize}}
-  </p>
 
-  <p>
-    meta size (bytes): {{metaSize}}
-  </p>
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile>
+      <mat-card>
+        <p>
+          data size (bytes): {{dataSize}}
+        </p>
 
-  <p>
-    total size (bytes): {{getTotalSize()}}
-  </p>
+        <p>
+          meta size (bytes): {{metaSize}}
+        </p>
 
-  <p>
-    estimated gas: {{estimatedGas}}
-  </p>
+        <p>
+          total size (bytes): {{getTotalSize()}}
+        </p>
 
-  <p>
-    <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="standard"></app-transaction-cost-info>
-  </p>
+        <p>
+          estimated gas: {{estimatedGas}}
+        </p>
+      </mat-card>
+    </mat-grid-tile>
 
-  <p>
-    <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="safeLow"></app-transaction-cost-info>
-  </p>
+    <mat-grid-tile>
+      <mat-card>
+        <mat-tab-group>
+          <mat-tab label="standard">
+            <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="standard"></app-transaction-cost-info>
+          </mat-tab>
 
-  <p>
-    <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="fast"></app-transaction-cost-info>
-  </p>
+          <mat-tab label="safeLow">
+            <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="safeLow"></app-transaction-cost-info>
+          </mat-tab>
 
-  <p>
-    <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="fastest"></app-transaction-cost-info>
-  </p>
+          <mat-tab label="fast">
+            <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="fast"></app-transaction-cost-info>
+          </mat-tab>
+
+          <mat-tab label="fastest">
+            <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="fastest"></app-transaction-cost-info>
+          </mat-tab>
+
+        </mat-tab-group>
+      </mat-card>
+    </mat-grid-tile>
+
+  </mat-grid-list>
 
 </div>
 

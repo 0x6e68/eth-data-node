@@ -1,0 +1,8 @@
+:host ::ng-deep .message-textarea{
+  height: 200px;
+}
+
+:host ::ng-deep mat-form-field{
+  width: -moz-available;
+  width: -webkit-fill-available;
+}

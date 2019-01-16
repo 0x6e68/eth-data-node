@@ -1,2 +1,6 @@
-<textarea type="text" [(ngModel)]="data" (ngModelChange)="dataUpdated($event)"></textarea>
+<mat-form-field>
+  <textarea matInput placeholder="message" type="text" [(ngModel)]="data" (ngModelChange)="dataUpdated($event)" class="message-textarea"></textarea>
+</mat-form-field>
+
 <app-upload-cost-info [dataBlob]="dataBlob"></app-upload-cost-info>
+<app-upload-button [dataBlob]="dataBlob"></app-upload-button>
