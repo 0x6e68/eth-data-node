@@ -20,7 +20,15 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { FileInputComponent } from './upload/components/file-input/file-input.component';
 import { UploadButtonComponent } from './upload/components/upload-button/upload-button.component';
-import {MatCardModule, MatGridListModule, MatInputModule, MatTabsModule} from "@angular/material";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatGridListModule,
+  MatInputModule,
+  MatSidenavModule,
+  MatTabsModule,
+  MatToolbarModule
+} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -47,7 +55,10 @@ import {MatCardModule, MatGridListModule, MatInputModule, MatTabsModule} from "@
     MatTabsModule,
     MatCardModule,
     MatGridListModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule
   ],
   providers: [
     DataNodeService,

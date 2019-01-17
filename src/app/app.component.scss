@@ -1,0 +1,24 @@
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.page-container {
+  position: absolute;
+  top: 100px;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row{
+  height: 80px;
+}
+
+.ascii-art {
+  font: 500 10px/10px "Courier";
+  font-family: monospace;
+  white-space: pre;
+}

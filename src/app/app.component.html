@@ -1,12 +1,37 @@
-<mat-tab-group>
-  <mat-tab label="text">
-    <app-message-input></app-message-input>
-  </mat-tab>
+<mat-toolbar class="page-header">
+  <pre class="ascii-art">
+██████╗  █████╗ ████████╗ █████╗ ███╗   ██╗ ██████╗ ██████╗ ███████╗
+██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗████╗  ██║██╔═══██╗██╔══██╗██╔════╝
+██║  ██║███████║   ██║   ███████║██╔██╗ ██║██║   ██║██║  ██║█████╗
+██║  ██║██╔══██║   ██║   ██╔══██║██║╚██╗██║██║   ██║██║  ██║██╔══╝
+██████╔╝██║  ██║   ██║   ██║  ██║██║ ╚████║╚██████╔╝██████╔╝███████╗
+╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝
+  </pre>
+</mat-toolbar>
 
-  <mat-tab label="file">
-    <app-file-input></app-file-input>
-  </mat-tab>
-</mat-tab-group>
+<mat-sidenav-container hasBackdrop="false" class="page-container">
+
+  <mat-sidenav #sidenav mode="side" opened fixedInViewport="true" fixedTopGap="100">
+    <mat-tab-group>
+
+      <mat-tab label="text">
+        <app-message-input></app-message-input>
+      </mat-tab>
+
+      <mat-tab label="file">
+        <app-file-input></app-file-input>
+      </mat-tab>
+
+    </mat-tab-group>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-transaction-list></app-transaction-list>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
 
 
-<app-transaction-list></app-transaction-list>
+
+
+
