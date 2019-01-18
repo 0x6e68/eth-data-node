@@ -15,8 +15,8 @@
 
   <mat-sidenav-container *ngIf="getWeb3State() === WEB3_SERVICE_STATE.READY" hasBackdrop="false">
 
-    <mat-sidenav #sidenav mode="side" opened fixedInViewport="true" fixedTopGap="100">
-      <mat-tab-group>
+    <mat-sidenav #sidenav mode="side" opened fixedInViewport="true" fixedTopGap="80">
+      <mat-tab-group [@.disabled]="true">
 
         <mat-tab label="text">
           <app-message-input></app-message-input>

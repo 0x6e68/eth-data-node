@@ -10,7 +10,7 @@ export class DataNodeService {
 
   constructor(private web3Service: Web3Service) {
     this.contractPromise = web3Service.getWeb3().then(web3 => {
-      const contract = new web3.eth.Contract(DATA_NODE_ABI, '0x72ca03852c83d4164cac6ddc7d5950b55f0e9d75');
+      const contract = new web3.eth.Contract(DATA_NODE_ABI, '0x354291721a9c4e76906b5658856cc2a94e943854');
       contract.setProvider(web3.currentProvider);
 
       return contract;

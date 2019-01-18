@@ -1,8 +1,12 @@
 :host ::ng-deep .message-textarea{
-  height: 200px;
+  height: 100px;
 }
 
 :host ::ng-deep mat-form-field{
   width: -moz-available;
   width: -webkit-fill-available;
+}
+
+::ng-deep .mat-tab-label {
+  min-width: 72px !important;
 }
