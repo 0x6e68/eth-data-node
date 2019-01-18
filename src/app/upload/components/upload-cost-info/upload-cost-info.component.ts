@@ -1,9 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {DataNodeService} from "../../../services/data-node.service";
-import {GasPriceInfo, GasPriceInfoService} from "../../services/gas-price-info.service";
-import {Observable} from "rxjs";
-import {Web3Service} from "../../../services/web3.service";
-import {EtherPrizeInfoService} from "../../services/ether-prize-info.service";
+import {DataNodeService} from '../../../services/data-node.service';
 
 @Component({
   selector: 'app-upload-cost-info',
@@ -19,7 +15,7 @@ export class UploadCostInfoComponent implements OnChanges, OnInit {
   metaSize: number;
   estimatedGas: number;
 
-  private encoder:TextEncoder = new TextEncoder();
+  private encoder: TextEncoder = new TextEncoder();
 
   constructor(private dataNodeService: DataNodeService) {
   }
@@ -38,7 +34,7 @@ export class UploadCostInfoComponent implements OnChanges, OnInit {
   private async analyzeBlob() {
     const reader = new FileReader();
 
-    reader.onload = async (event) => {
+    reader.onload = async () => {
       const metaData = {
         type: this.dataBlob.type
       };

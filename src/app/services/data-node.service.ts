@@ -23,7 +23,6 @@ export class DataNodeService {
   }
 
   async postDataTransaction(data: ArrayBuffer, metaData: Object) {
-    const web3 = await this.web3Service.getWeb3();
     const account = await this.web3Service.getAccount();
 
     const transaction = await this.createTransaction(data, metaData);
@@ -31,7 +30,6 @@ export class DataNodeService {
   }
 
   async estimateGasForPostingDataTransaction(data: ArrayBuffer, metaData: Object): Promise<number>{
-    const web3 = await this.web3Service.getWeb3();
     const account = await this.web3Service.getAccount();
 
     const transaction = await this.createTransaction(data, metaData);
@@ -44,8 +42,7 @@ export class DataNodeService {
         fromBlock: 0,
         toBlock: 'latest'
       }).then(events => {
-
-        let dataPromises = [];
+        const dataPromises = [];
         events.forEach(event => {
           dataPromises.push(this.extractDataFromEvent(event));
         });

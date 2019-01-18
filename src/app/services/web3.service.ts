@@ -2,34 +2,52 @@ import {Injectable} from '@angular/core';
 import * as Web3 from 'web3';
 import {bytesToHex, hexToBytes, hexToString, stringToHex, toWei, fromWei} from "web3-utils";
 
+export enum WEB3_SERVICE_STATE {
+  SETUP,
+  TRY_GET_ACCESS_FROM_METAMASK,
+  READY,
+  NO_WEB3_FOUND,
+  ERROR
+}
+
 @Injectable()
 export class Web3Service {
   private web3: Promise<any>;
 
+  state: WEB3_SERVICE_STATE;
 
   private async trySetupWeb3(provider: any):Promise<any> {
-
     try {
       const web3 = new Web3(provider);
       // Request account access if needed
+      this.state = WEB3_SERVICE_STATE.TRY_GET_ACCESS_FROM_METAMASK;
       await provider.enable();
-      return new Promise(resolve => resolve(web3));
+      this.state = WEB3_SERVICE_STATE.READY;
+      return new Promise(resolve => {
+        return resolve(web3)
+      });
     } catch (error) {
       console.log(error);
+      this.state = WEB3_SERVICE_STATE.ERROR;
       return new Promise((resolve, reject) => reject(error));
     }
 
   }
 
   constructor() {
+    this.state = WEB3_SERVICE_STATE.SETUP;
     const provider = window['ethereum'];
     if (provider) {
-      console.log('setup metamask');
       this.web3 = this.trySetupWeb3(provider);
+
     } else if (window['web3']) {
-      console.log('setup metamask (legacy)');
-      this.web3 = new Promise(resolve => resolve(new Web3(window['web3'].currentProvider)));
+      this.state = WEB3_SERVICE_STATE.READY;
+      this.web3 = new Promise(resolve => {
+        const web3 = new Web3(window['web3'].currentProvider);
+        return resolve(web3);
+      });
     } else {
+      this.state = WEB3_SERVICE_STATE.NO_WEB3_FOUND;
       console.error('Non-Ethereum browser detected. You should consider trying MetaMask!');
     }
   }

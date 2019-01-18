@@ -8,15 +8,12 @@ import {FileSystemFileEntry, UploadEvent} from "ngx-file-drop";
   templateUrl: './file-input.component.html',
   styleUrls: ['./file-input.component.scss']
 })
-export class FileInputComponent implements OnInit {
+export class FileInputComponent{
 
   data: string;
   dataBlob: Blob;
 
-  constructor(private messageService: DataNodeService, private web3Service: Web3Service) {
-  }
-
-  ngOnInit() {
+  constructor() {
   }
 
   public dropped(event: UploadEvent) {

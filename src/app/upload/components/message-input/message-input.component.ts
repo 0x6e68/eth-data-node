@@ -5,17 +5,15 @@ import {Component, OnInit} from '@angular/core';
   templateUrl: './message-input.component.html',
   styleUrls: ['./message-input.component.scss']
 })
-export class MessageInputComponent implements OnInit {
+export class MessageInputComponent{
 
   data: string;
   dataBlob: Blob;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
   }
 
-  dataUpdated(event: string){
+  dataUpdated(event: string): void {
     this.dataBlob = new Blob([event], {type: 'text/plain'});
   }
 

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DataNodeService} from "../../../services/data-node.service";
+import {DataNodeService} from '../../../services/data-node.service';
 
 @Component({
   selector: 'app-upload-button',
@@ -11,23 +11,24 @@ export class UploadButtonComponent implements OnInit {
   @Input()
   dataBlob: Blob;
 
-  constructor(private dataNodeService: DataNodeService) { }
+  constructor(private dataNodeService: DataNodeService) {
+  }
 
   ngOnInit() {
   }
 
-  postDataTransaction(){
-    if(this.dataBlob){
+  postDataTransaction() {
+    if (this.dataBlob) {
 
       const reader = new FileReader();
 
-      reader.onload = (event) => {
+      reader.onload = () => {
         const metaData = {
           type: this.dataBlob.type
         };
 
         const result = reader.result as ArrayBuffer;
-        this.dataNodeService.postDataTransaction(result,metaData);
+        this.dataNodeService.postDataTransaction(result, metaData);
 
       };
 

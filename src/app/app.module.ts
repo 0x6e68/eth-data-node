@@ -9,7 +9,6 @@ import {Web3Service} from "./services/web3.service";
 import {ItemStringDataComponent} from "./transaction-list-item/item-data/string/item-string-data.component";
 import {ItemBlobDataComponent} from "./transaction-list-item/item-data/download/item-blob-data.component";
 import {TransactionListItem} from "./transaction-list-item/transaction-list-item.component";
-import {UploadFileComponent} from "./upload-file-form/upload-file-form.component";
 import {FileDropModule} from "ngx-file-drop";
 import {ItemImageDataComponent} from "./transaction-list-item/item-data/image/item-image-data.component";
 import {MessageInputComponent} from './upload/components/message-input/message-input.component';
@@ -29,6 +28,7 @@ import {
   MatTabsModule,
   MatToolbarModule
 } from "@angular/material";
+import { NoEthBrowserComponent } from './no-eth-browser/no-eth-browser.component';
 
 @NgModule({
   declarations: [
@@ -38,12 +38,12 @@ import {
     ItemImageDataComponent,
     ItemBlobDataComponent,
     TransactionListItem,
-    UploadFileComponent,
     MessageInputComponent,
     UploadCostInfoComponent,
     TransactionCostInfoComponent,
     FileInputComponent,
     UploadButtonComponent,
+    NoEthBrowserComponent,
   ],
   imports: [
     BrowserModule,

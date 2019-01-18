@@ -9,27 +9,37 @@
   </pre>
 </mat-toolbar>
 
-<mat-sidenav-container hasBackdrop="false" class="page-container">
+<div class="page-container">
+ <app-no-eth-browser></app-no-eth-browser>
 
-  <mat-sidenav #sidenav mode="side" opened fixedInViewport="true" fixedTopGap="100">
-    <mat-tab-group>
 
-      <mat-tab label="text">
-        <app-message-input></app-message-input>
-      </mat-tab>
+  <mat-sidenav-container *ngIf="getWeb3State() === WEB3_SERVICE_STATE.READY" hasBackdrop="false">
 
-      <mat-tab label="file">
-        <app-file-input></app-file-input>
-      </mat-tab>
+    <mat-sidenav #sidenav mode="side" opened fixedInViewport="true" fixedTopGap="100">
+      <mat-tab-group>
 
-    </mat-tab-group>
-  </mat-sidenav>
+        <mat-tab label="text">
+          <app-message-input></app-message-input>
+        </mat-tab>
 
-  <mat-sidenav-content>
-    <app-transaction-list></app-transaction-list>
-  </mat-sidenav-content>
+        <mat-tab label="file">
+          <app-file-input></app-file-input>
+        </mat-tab>
 
-</mat-sidenav-container>
+      </mat-tab-group>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <app-transaction-list></app-transaction-list>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>
+
+
+
+
 
 
 

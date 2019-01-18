@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {GasPriceInfoService, GasPriceType} from "../../services/gas-price-info.service";
-import {Web3Service} from "../../../services/web3.service";
-import {EtherPrizeInfoService} from "../../services/ether-prize-info.service";
+import {GasPriceInfoService, GasPriceType} from '../../services/gas-price-info.service';
+import {Web3Service} from '../../../services/web3.service';
+import {EtherPrizeInfoService} from '../../services/ether-prize-info.service';
 
 @Component({
   selector: 'app-transaction-cost-info',
@@ -29,13 +29,13 @@ export class TransactionCostInfoComponent implements OnInit, OnChanges {
     });
 
     this.ethPrizeService.ethDollarPrice.subscribe(value => {
-      this.etherPrizeDollar = value
+      this.etherPrizeDollar = value;
     });
   }
 
 
   private calcTotalGasPrizeEther() {
-    if(this.gasPrizeGwei){
+    if (this.gasPrizeGwei) {
       this.gasPrizeEther = this.web3.fromUnitToUnit(this.gasPrizeGwei + '', 'gwei', 'ether');
     }
   }

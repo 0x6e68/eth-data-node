@@ -1,7 +1,7 @@
 import {Injectable, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {map} from "rxjs/operators";
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
 
 export interface EthMarketEntry {
@@ -13,7 +13,7 @@ export interface EthMarketEntry {
 }
 
 export interface EthMarket {
-  Markets: EthMarketEntry[]
+  Markets: EthMarketEntry[];
 }
 
 @Injectable({

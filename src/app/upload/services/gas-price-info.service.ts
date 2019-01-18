@@ -1,6 +1,6 @@
 import {Injectable, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 export interface GasPriceInfo {
   safeLow: number;
@@ -16,7 +16,7 @@ export type GasPriceType = 'safeLow' | 'standard' | 'fast' | 'fastest';
 })
 export class GasPriceInfoService implements OnInit {
 
-  private url: string = 'https://www.etherchain.org/api/gasPriceOracle';
+  private url = 'https://www.etherchain.org/api/gasPriceOracle';
 
   gasPriceInfoObservable: Observable<GasPriceInfo>;
 
