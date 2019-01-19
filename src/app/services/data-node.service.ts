@@ -2,25 +2,29 @@ import {Injectable} from '@angular/core';
 import {Web3Service} from "./web3.service";
 import {DATA_NODE_ABI} from "../config/data-node-abi";
 import {DataTransactionModel} from "../models/data-transaction.model";
+import {DATA_NODE_CONFIG} from "../config/data-node-config";
+import {Subject} from "rxjs";
 
 @Injectable()
 export class DataNodeService {
 
-  private contractPromise: Promise<any>;
+  private contract;
+
+  private contractReadySubject = new Subject<boolean>();
+  contractReady = this.contractReadySubject.asObservable();
 
   constructor(private web3Service: Web3Service) {
-    this.contractPromise = web3Service.getWeb3().then(web3 => {
-      const contract = new web3.eth.Contract(DATA_NODE_ABI, '0x354291721a9c4e76906b5658856cc2a94e943854');
-      contract.setProvider(web3.currentProvider);
-
-      return contract;
-    });
+    this.loadContractAtAddress(DATA_NODE_CONFIG.defaultAddress);
   }
 
-  private async executeOnContract(f: (contract: any) => any): Promise<any> {
-    const constract = await this.contractPromise;
-    return new Promise<any>(resolve => resolve(f(constract)));
+  async loadContractAtAddress(address: string) {
+    const web3 = await this.web3Service.getWeb3();
+    const contract = new web3.eth.Contract(DATA_NODE_ABI, address);
+    contract.setProvider(web3.currentProvider);
+    this.contract = contract;
+    this.contractReadySubject.next(this.contractReady !== undefined);
   }
+
 
   async postDataTransaction(data: ArrayBuffer, metaData: Object) {
     const account = await this.web3Service.getAccount();
@@ -29,34 +33,32 @@ export class DataNodeService {
     transaction.send({from: account});
   }
 
-  async estimateGasForPostingDataTransaction(data: ArrayBuffer, metaData: Object): Promise<number>{
+  async estimateGasForPostingDataTransaction(data: ArrayBuffer, metaData: Object): Promise<number> {
     const account = await this.web3Service.getAccount();
 
-    const transaction = await this.createTransaction(data, metaData);
+    const transaction = this.createTransaction(data, metaData);
     return transaction.estimateGas({from: account});
   }
 
-  async getPastEvents(): Promise<DataTransactionModel[]> {
-    return this.executeOnContract(contract => {
-      return contract.getPastEvents('DataAdded', {
-        fromBlock: 0,
-        toBlock: 'latest'
-      }).then(events => {
-        const dataPromises = [];
-        events.forEach(event => {
-          dataPromises.push(this.extractDataFromEvent(event));
-        });
+  getPastEvents(): Promise<DataTransactionModel[]> {
+    return this.contract.getPastEvents('DataAdded', {
+      fromBlock: 0,
+      toBlock: 'latest'
+    }).then(events => {
+      const dataPromises = [];
+      events.forEach(event => {
+        dataPromises.push(this.extractDataFromEvent(event));
+      });
 
-        return Promise.all(dataPromises);
-        });
+      return Promise.all(dataPromises);
     });
   }
 
-  private async createTransaction(data: ArrayBuffer, metaData: Object): Promise<any> {
+  private createTransaction(data: ArrayBuffer, metaData: Object) {
     const bytesString = this.web3Service.arrayBufferToHex(data);
     const metaDataJson = metaData !== undefined ? JSON.stringify(metaData) : '{}';
 
-    return this.executeOnContract(contract => contract.methods.postDataTransaction(bytesString, metaDataJson));
+    return this.contract.methods.postDataTransaction(bytesString, metaDataJson);
   }
 
   async extractDataFromEvent(event: any): Promise<DataTransactionModel> {

@@ -1,8 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {Subject} from 'rxjs';
-import {DataTransactionModel} from "../models/data-transaction.model";
-import {DataNodeService} from "../services/data-node.service";
-import {Web3Service} from "../services/web3.service";
+import {DataTransactionModel} from "../../../models/data-transaction.model";
+import {DataNodeService} from "../../../services/data-node.service";
+import {Web3Service} from "../../../services/web3.service";
 
 @Component({
   selector: 'app-transaction-list',
@@ -13,18 +12,25 @@ export class TransactionListComponent implements OnInit {
 
   dataBlocks: DataTransactionModel[] = [];
   private indexOfLastEntry: number;
+  private contractReady = false;
 
 
   constructor(private dataNodeService: DataNodeService, private web3Service: Web3Service, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
-    this.loadTransactions();
+    this.dataNodeService.contractReady.subscribe((contractReady)=>{
+      this.contractReady = contractReady;
+      this.loadTransactions();
+    });
+
   }
 
 
   async loadTransactions() {
-    this.dataBlocks = await this.dataNodeService.getPastEvents();
+    if(this.contractReady){
+      this.dataBlocks = await this.dataNodeService.getPastEvents();
+    }
   }
 
 

@@ -11,10 +11,13 @@ export class UploadButtonComponent implements OnInit {
   @Input()
   dataBlob: Blob;
 
+  contractReady = false;
+
   constructor(private dataNodeService: DataNodeService) {
   }
 
   ngOnInit() {
+    this.dataNodeService.contractReady.subscribe((contractReady)=> this.contractReady = contractReady);
   }
 
   postDataTransaction() {

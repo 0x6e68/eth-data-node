@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {DataTransactionModel} from "../models/data-transaction.model";
+import {DataTransactionModel} from "../../../models/data-transaction.model";
 
 @Component({
   selector: 'app-transaction-list-item',

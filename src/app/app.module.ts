@@ -3,14 +3,14 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {TransactionListComponent} from "./transaction-list/transaction-list.component";
+import {TransactionListComponent} from "./transactions/components/transaction-list/transaction-list.component";
 import {DataNodeService} from "./services/data-node.service";
 import {Web3Service} from "./services/web3.service";
-import {ItemStringDataComponent} from "./transaction-list-item/item-data/string/item-string-data.component";
-import {ItemBlobDataComponent} from "./transaction-list-item/item-data/download/item-blob-data.component";
-import {TransactionListItem} from "./transaction-list-item/transaction-list-item.component";
+import {ItemStringDataComponent} from "./transactions/components/transaction-list-item/item-data/string/item-string-data.component";
+import {ItemBlobDataComponent} from "./transactions/components/transaction-list-item/item-data/download/item-blob-data.component";
+import {TransactionListItem} from "./transactions/components/transaction-list-item/transaction-list-item.component";
 import {FileDropModule} from "ngx-file-drop";
-import {ItemImageDataComponent} from "./transaction-list-item/item-data/image/item-image-data.component";
+import {ItemImageDataComponent} from "./transactions/components/transaction-list-item/item-data/image/item-image-data.component";
 import {MessageInputComponent} from './upload/components/message-input/message-input.component';
 import {UploadCostInfoComponent} from './upload/components/upload-cost-info/upload-cost-info.component';
 import {TransactionCostInfoComponent} from './upload/components/transaction-cost-info/transaction-cost-info.component';
@@ -29,6 +29,8 @@ import {
   MatToolbarModule
 } from "@angular/material";
 import { NoEthBrowserComponent } from './no-eth-browser/no-eth-browser.component';
+import { UploadInputGroupComponent } from './upload/components/upload-input-group/upload-input-group.component';
+import { ContractAddressConfigComponent } from './contract-address-config/contract-address-config.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { NoEthBrowserComponent } from './no-eth-browser/no-eth-browser.component
     FileInputComponent,
     UploadButtonComponent,
     NoEthBrowserComponent,
+    UploadInputGroupComponent,
+    ContractAddressConfigComponent,
   ],
   imports: [
     BrowserModule,
