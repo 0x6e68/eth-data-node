@@ -15,14 +15,14 @@ import {MessageInputComponent} from './upload/components/message-input/message-i
 import {UploadCostInfoComponent} from './upload/components/upload-cost-info/upload-cost-info.component';
 import {TransactionCostInfoComponent} from './upload/components/transaction-cost-info/transaction-cost-info.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { FileInputComponent } from './upload/components/file-input/file-input.component';
 import { UploadButtonComponent } from './upload/components/upload-button/upload-button.component';
 import {
   MatButtonModule,
   MatCardModule,
-  MatGridListModule,
+  MatGridListModule, MatIconModule,
   MatInputModule,
   MatSidenavModule,
   MatTabsModule,
@@ -62,7 +62,9 @@ import { ContractAddressConfigComponent } from './contract-address-config/contra
     MatInputModule,
     MatButtonModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [
     DataNodeService,
