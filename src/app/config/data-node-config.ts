@@ -1,3 +1,3 @@
 export const DATA_NODE_CONFIG = {
-  defaultAddress: '0xce8cc6d8fad6858e66d8b23006073d41cc024339'
+  defaultAddress: '0x354291721a9c4e76906b5658856cc2a94e943854'
 };

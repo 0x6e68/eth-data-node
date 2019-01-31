@@ -4,6 +4,7 @@ import {hexToString} from "web3-utils";
 @Component({
   selector: 'app-item-string-data',
   templateUrl: './item-string-data.component.html',
+  styleUrls: ['./item-string-data.component.scss']
 })
 export class ItemStringDataComponent {
 
