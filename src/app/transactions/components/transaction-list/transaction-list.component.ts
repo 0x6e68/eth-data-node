@@ -19,7 +19,7 @@ export class TransactionListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataNodeService.contractReady.subscribe((contractReady)=>{
+    this.dataNodeService.contractReady.subscribe((contractReady) => {
       this.contractReady = contractReady;
       this.loadTransactions();
     });
@@ -28,9 +28,33 @@ export class TransactionListComponent implements OnInit {
 
 
   async loadTransactions() {
-    if(this.contractReady){
-      this.dataBlocks = await this.dataNodeService.getPastEvents();
+    try {
+      if (this.contractReady) {
+        const nextIndex = await this.dataNodeService.getNextIndex();
+
+        console.log('nextIndex', nextIndex);
+
+        if (nextIndex === 1) {
+          return;
+        }
+
+        let fromIndex = nextIndex - 20;
+        if (fromIndex < 1) {
+          fromIndex = 1;
+        }
+
+        const toIndex = nextIndex;
+
+        const indices = Array.from({length: toIndex - fromIndex}, (v, i) => i + fromIndex);
+        console.log('fromIndex', fromIndex, 'toIndex', toIndex, 'indices', indices);
+
+
+        this.dataBlocks = await this.dataNodeService.getPastEventsWithIndices(indices);
+      }
+    } catch (e) {
+      console.log(e);
     }
+
   }
 
 

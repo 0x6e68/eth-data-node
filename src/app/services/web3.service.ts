@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
-import * as Web3 from 'web3';
-import {bytesToHex, hexToBytes, hexToString, stringToHex, toWei, fromWei} from "web3-utils";
+import * as W3 from 'web3';
+const Web3 = require('web3'); // tslint:disable-line
+
+import {bytesToHex, hexToBytes, hexToString, stringToHex, toWei, fromWei, Unit} from "web3-utils";
 
 export enum WEB3_SERVICE_STATE {
   SETUP,
@@ -18,7 +20,7 @@ export class Web3Service {
 
   private async trySetupWeb3(provider: any):Promise<any> {
     try {
-      const web3 = new Web3(provider);
+      const web3:W3.default = new Web3(provider);
       // Request account access if needed
       this.state = WEB3_SERVICE_STATE.TRY_GET_ACCESS_FROM_METAMASK;
       await provider.enable();
@@ -89,15 +91,15 @@ export class Web3Service {
     return stringToHex(input);
   }
 
-  toWei(value: number | string, unit: string): number{
+  toWei(value: string, unit: Unit): string{
     return toWei(value, unit);
   }
 
-  fromWei(value: number | string, unit: string): number{
+  fromWei(value: string, unit: Unit): string{
     return fromWei(value, unit);
   }
 
-  fromUnitToUnit(value: string, fromUnit: string, toUnit: string){
+  fromUnitToUnit(value: string, fromUnit: Unit, toUnit: Unit){
     const weiValue = this.toWei(value, fromUnit);
     return fromWei(weiValue, toUnit);
   }

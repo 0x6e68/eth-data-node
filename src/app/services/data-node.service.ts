@@ -40,10 +40,28 @@ export class DataNodeService {
     return transaction.estimateGas({from: account});
   }
 
-  getPastEvents(): Promise<DataTransactionModel[]> {
+  getPastEventsWithIndices(indices: number[]): Promise<DataTransactionModel[]> {
+    return this.getPastEventsWithFilter({index: indices});
+  }
+
+  getPastEventsFromSender(address: string): Promise<DataTransactionModel[]> {
+    return this.getPastEventsWithFilter({from: address});
+  }
+
+  async getNextIndex(): Promise<number>{
+    console.log(this.contract.methods.getNextIndex());
+
+    const account = await this.web3Service.getAccount();
+
+    return this.contract.methods.getNextIndex().call({from: account, gas: 55000});
+
+  }
+
+  private getPastEventsWithFilter(filter: Object): Promise<DataTransactionModel[]> {
     return this.contract.getPastEvents('DataAdded', {
       fromBlock: 0,
-      toBlock: 'latest'
+      toBlock: 'latest',
+      filter: filter
     }).then(events => {
       const dataPromises = [];
       events.forEach(event => {
@@ -54,6 +72,7 @@ export class DataNodeService {
     });
   }
 
+
   private createTransaction(data: ArrayBuffer, metaData: Object) {
     const bytesString = this.web3Service.arrayBufferToHex(data);
     const metaDataJson = metaData !== undefined ? JSON.stringify(metaData) : '{}';
@@ -63,7 +82,7 @@ export class DataNodeService {
 
   async extractDataFromEvent(event: any): Promise<DataTransactionModel> {
     const hash: string = event.transactionHash;
-    const index = event.returnValues['index'];
+    const index = event.returnValues['usedIndex'];
 
     const transaction = await this.web3Service.getTransaction(hash);
     const rawData = await this.web3Service.extractTransactionData(['bytes', 'string'], transaction);

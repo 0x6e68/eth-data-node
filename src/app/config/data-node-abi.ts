@@ -38,11 +38,35 @@ export const DATA_NODE_ABI = [
       },
       {
         "indexed": false,
+        "name": "usedIndex",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
         "name": "index",
         "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "name": "from",
+        "type": "address"
       }
     ],
     "name": "DataAdded",
     "type": "event"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getNextIndex",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   }
 ];

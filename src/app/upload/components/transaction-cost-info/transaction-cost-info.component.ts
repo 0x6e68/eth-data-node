@@ -16,7 +16,7 @@ export class TransactionCostInfoComponent implements OnInit, OnChanges {
   estimatedGas: number;
 
   gasPrizeGwei: number;
-  gasPrizeEther: number;
+  gasPrizeEther: string;
   etherPrizeDollar: number;
 
   constructor(private web3: Web3Service, private ethPrizeService: EtherPrizeInfoService, private gasPriceInfoService: GasPriceInfoService) {
