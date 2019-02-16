@@ -28,33 +28,23 @@ export class TransactionListComponent implements OnInit {
 
 
   async loadTransactions() {
-    try {
-      if (this.contractReady) {
-        const nextIndex = await this.dataNodeService.getNextIndex();
+    if (this.contractReady) {
+      const nextIndex = await this.dataNodeService.getNextIndex();
 
-        console.log('nextIndex', nextIndex);
-
-        if (nextIndex === 1) {
-          return;
-        }
-
-        let fromIndex = nextIndex - 20;
-        if (fromIndex < 1) {
-          fromIndex = 1;
-        }
-
-        const toIndex = nextIndex;
-
-        const indices = Array.from({length: toIndex - fromIndex}, (v, i) => i + fromIndex);
-        console.log('fromIndex', fromIndex, 'toIndex', toIndex, 'indices', indices);
-
-
-        this.dataBlocks = await this.dataNodeService.getPastEventsWithIndices(indices);
+      if (nextIndex === 1) {
+        return;
       }
-    } catch (e) {
-      console.log(e);
-    }
 
+      let fromIndex = nextIndex - 20;
+      if (fromIndex < 1) {
+        fromIndex = 1;
+      }
+
+      const toIndex = nextIndex;
+      const indices = Array.from({length: toIndex - fromIndex}, (v, i) => i + fromIndex);
+
+      this.dataBlocks = await this.dataNodeService.getPastEventsWithIndices(indices);
+    }
   }
 
 

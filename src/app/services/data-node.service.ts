@@ -49,12 +49,7 @@ export class DataNodeService {
   }
 
   async getNextIndex(): Promise<number>{
-    console.log(this.contract.methods.getNextIndex());
-
-    const account = await this.web3Service.getAccount();
-
-    return this.contract.methods.getNextIndex().call({from: account, gas: 55000});
-
+    return this.contract.methods.getNextIndex().call();
   }
 
   private getPastEventsWithFilter(filter: Object): Promise<DataTransactionModel[]> {
