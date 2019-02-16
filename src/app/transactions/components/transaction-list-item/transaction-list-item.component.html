@@ -1,13 +1,21 @@
-<p>index: {{dataBlock.index}}</p>
-<p>author: {{dataBlock.author}}</p>
-<p>dataType: {{getDataType()}}</p>
-<p *ngIf="isText()">
-  <app-item-string-data [data]="dataBlock.data"></app-item-string-data>
-</p>
-<p *ngIf="isImage()">
-  <app-item-image-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-image-data>
-</p>
-<p >
-  <app-item-blob-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-blob-data>
-</p>
+<mat-card>
+  <mat-card-header>
+    index: {{dataBlock.index}} author: {{dataBlock.author}} dataType: {{getDataType()}}
+  </mat-card-header>
+
+  <mat-card-content>
+    <p *ngIf="isText()">
+      <app-item-string-data [data]="dataBlock.data"></app-item-string-data>
+    </p>
+    <p *ngIf="isImage()">
+      <app-item-image-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-image-data>
+    </p>
+    <p >
+      <app-item-blob-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-blob-data>
+    </p>
+  </mat-card-content>
+</mat-card>
+
+
+
 <br/>
