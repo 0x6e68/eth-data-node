@@ -43,7 +43,7 @@ export class TransactionListComponent implements OnInit {
       const toIndex = nextIndex;
       const indices = Array.from({length: toIndex - fromIndex}, (v, i) => i + fromIndex);
 
-      this.dataBlocks = await this.dataNodeService.getPastEventsWithIndices(indices);
+      this.dataBlocks = await this.dataNodeService.getPastEventsWithIndicesAndSenderAddress(indices, null);
     }
   }
 

@@ -16,7 +16,7 @@ export class ContractAddressConfigComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      address: new FormControl(environment.defaultContractAddress),
+      address: new FormControl(environment.contract.defaultAddress),
     });
   }
 

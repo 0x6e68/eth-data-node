@@ -14,7 +14,7 @@ export class DataNodeService {
   contractReady = this.contractReadySubject.asObservable();
 
   constructor(private web3Service: Web3Service) {
-    this.loadContractAtAddress(environment.defaultContractAddress);
+    this.loadContractAtAddress(environment.contract.defaultAddress);
   }
 
   async loadContractAtAddress(address: string) {
@@ -22,6 +22,7 @@ export class DataNodeService {
     const contract = new web3.eth.Contract(DATA_NODE_ABI, address);
     contract.setProvider(web3.currentProvider);
     this.contract = contract;
+
     this.contractReadySubject.next(this.contractReady !== undefined);
   }
 
@@ -40,12 +41,22 @@ export class DataNodeService {
     return transaction.estimateGas({from: account});
   }
 
-  getPastEventsWithIndices(indices: number[]): Promise<DataTransactionModel[]> {
-    return this.getPastEventsWithFilter({index: indices});
-  }
+  getPastEventsWithIndicesAndSenderAddress(indices: number[], address: string): Promise<DataTransactionModel[]> {
+    const filter = {};
 
-  getPastEventsFromSender(address: string): Promise<DataTransactionModel[]> {
-    return this.getPastEventsWithFilter({from: address});
+    if(indices){
+      filter['index'] = indices;
+    }
+
+    if(environment.contract.onlyLoadDataWithOriginAddress){
+      address = environment.contract.onlyLoadDataWithOriginAddress;
+    }
+
+    if(address){
+      filter['from'] = address;
+    }
+
+    return this.getPastEventsWithFilter(filter);
   }
 
   async getNextIndex(): Promise<number>{
@@ -53,8 +64,10 @@ export class DataNodeService {
   }
 
   private getPastEventsWithFilter(filter: Object): Promise<DataTransactionModel[]> {
+    const startFromBlockNumber = environment.contract.searchFromBlockNumber | 0;
+
     return this.contract.getPastEvents('DataAdded', {
-      fromBlock: 0,
+      fromBlock: startFromBlockNumber,
       toBlock: 'latest',
       filter: filter
     }).then(events => {
@@ -76,10 +89,10 @@ export class DataNodeService {
   }
 
   async extractDataFromEvent(event: any): Promise<DataTransactionModel> {
-    const hash: string = event.transactionHash;
+    const txHash: string = event.transactionHash;
     const index = event.returnValues['usedIndex'];
 
-    const transaction = await this.web3Service.getTransaction(hash);
+    const transaction = await this.web3Service.getTransaction(txHash);
     const rawData = await this.web3Service.extractTransactionData(['bytes', 'string'], transaction);
 
     const data: Uint8Array = this.web3Service.hexToUint8Array(rawData[0]);
