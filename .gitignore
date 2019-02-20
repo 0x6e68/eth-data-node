@@ -5,6 +5,10 @@
 /tmp
 /out-tsc
 
+# firebase
+.firebaserc
+.firebase
+
 # dependencies
 /node_modules
 
@@ -16,6 +20,7 @@
 *.launch
 .settings/
 *.sublime-workspace
+*.iml
 
 # IDE - VSCode
 .vscode/*
