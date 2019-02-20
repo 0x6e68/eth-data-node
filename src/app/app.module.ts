@@ -31,10 +31,7 @@ import {
 import { NoEthBrowserComponent } from './no-eth-browser/no-eth-browser.component';
 import { UploadInputGroupComponent } from './upload/components/upload-input-group/upload-input-group.component';
 import { ContractAddressConfigComponent } from './contract-address-config/contract-address-config.component';
-import {environment} from "../environments/environment.prod";
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 @NgModule({
   declarations: [
@@ -70,8 +67,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     ReactiveFormsModule,
     MatIconModule,
 
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
   ],
   providers: [
     DataNodeService,
