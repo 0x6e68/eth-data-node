@@ -16,7 +16,7 @@ export class TransactionCostInfoComponent implements OnInit, OnChanges {
   estimatedGas: number;
 
   gasPrizeGwei: number;
-  gasPrizeEther: string;
+  gasPrizeEther: number;
   etherPrizeDollar: number;
 
   constructor(private web3: Web3Service, private ethPrizeService: EtherPrizeInfoService, private gasPriceInfoService: GasPriceInfoService) {
@@ -33,14 +33,28 @@ export class TransactionCostInfoComponent implements OnInit, OnChanges {
     });
   }
 
-
-  private calcTotalGasPrizeEther() {
-    if (this.gasPrizeGwei) {
-      this.gasPrizeEther = this.web3.fromUnitToUnit(this.gasPrizeGwei + '', 'gwei', 'ether');
-    }
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
     this.calcTotalGasPrizeEther();
   }
+
+  calculateGasPrizeInDollar(){
+    return this.etherPrizeDollar * this.gasPrizeEther;
+  }
+
+  calculateTransactionCostInEther(){
+    return this.estimatedGas * this.gasPrizeEther;
+  }
+
+  calculateTransactionCostInDollar(){
+    return this.estimatedGas * this.calculateGasPrizeInDollar();
+  }
+
+
+  private calcTotalGasPrizeEther() {
+    if (this.gasPrizeGwei) {
+      this.gasPrizeEther = Number(this.web3.fromUnitToUnit(this.gasPrizeGwei + '', 'gwei', 'ether'));
+    }
+  }
+
+
 }

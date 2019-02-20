@@ -8,15 +8,15 @@
   </p>
 
   <p>
-    Gas Prize Dollar: {{(etherPrizeDollar * gasPrizeEther)| number:'1.0-10'}}
+    Gas Prize Dollar: {{calculateGasPrizeInDollar()| number:'1.0-10'}}
   </p>
 
   <p>
-    Transaction Cost Ether: {{estimatedGas * gasPrizeEther}}
+    Transaction Cost Ether: {{calculateTransactionCostInEther()}}
   </p>
 
   <p>
-    Transaction Cost Dollar: {{estimatedGas * etherPrizeDollar * gasPrizeEther}}
+    Transaction Cost Dollar: {{calculateTransactionCostInDollar()}}
   </p>
 </div>
 
