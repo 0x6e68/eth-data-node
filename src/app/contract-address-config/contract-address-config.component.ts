@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {DATA_NODE_CONFIG} from "../config/data-node-config";
 import {FormControl, FormGroup} from "@angular/forms";
 import {DataNodeService} from "../services/data-node.service";
+import {environment} from "../../environments/environment.prod";
 
 @Component({
   selector: 'app-contract-address-config',
@@ -16,7 +16,7 @@ export class ContractAddressConfigComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      address: new FormControl(DATA_NODE_CONFIG.defaultAddress),
+      address: new FormControl(environment.defaultContractAddress),
     });
   }
 

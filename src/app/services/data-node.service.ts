@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {Web3Service} from "./web3.service";
 import {DATA_NODE_ABI} from "../config/data-node-abi";
 import {DataTransactionModel} from "../models/data-transaction.model";
-import {DATA_NODE_CONFIG} from "../config/data-node-config";
 import {Subject} from "rxjs";
+import {environment} from "../../environments/environment.prod";
 
 @Injectable()
 export class DataNodeService {
@@ -14,7 +14,7 @@ export class DataNodeService {
   contractReady = this.contractReadySubject.asObservable();
 
   constructor(private web3Service: Web3Service) {
-    this.loadContractAtAddress(DATA_NODE_CONFIG.defaultAddress);
+    this.loadContractAtAddress(environment.defaultContractAddress);
   }
 
   async loadContractAtAddress(address: string) {
