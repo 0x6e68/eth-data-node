@@ -1,6 +1,24 @@
+.page-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  height: 80px;
+}
+
 .ascii-art {
   font: 500 10px/10px "Courier";
   font-family: monospace;
   white-space: pre;
-  min-width: 400px;
+}
+
+@media screen and (max-width: 400px){
+  .ascii-art {
+    font: 500 5px/5px "Courier";
+  }
+
+  .page-header {
+    height: 45px;
+  }
 }

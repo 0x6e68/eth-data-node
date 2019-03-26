@@ -1,6 +1,4 @@
-<mat-toolbar class="page-header">
-  <app-header></app-header>
-</mat-toolbar>
+<app-header></app-header>
 
 <div class="page-container">
   <app-no-eth-browser></app-no-eth-browser>
@@ -8,7 +6,7 @@
 
   <mat-sidenav-container *ngIf="getWeb3State() === WEB3_SERVICE_STATE.READY" hasBackdrop="false">
 
-    <mat-sidenav #sidenav mode="side" opened fixedInViewport="true" fixedTopGap="80">
+    <mat-sidenav #sidenav mode="side" opened fixedInViewport="true">
       <app-contract-address-config></app-contract-address-config>
       <app-upload-input-group></app-upload-input-group>
     </mat-sidenav>
