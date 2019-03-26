@@ -31,6 +31,7 @@ import {
 import { NoEthBrowserComponent } from './no-eth-browser/no-eth-browser.component';
 import { UploadInputGroupComponent } from './upload/components/upload-input-group/upload-input-group.component';
 import { ContractAddressConfigComponent } from './contract-address-config/contract-address-config.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { ContractAddressConfigComponent } from './contract-address-config/contra
     NoEthBrowserComponent,
     UploadInputGroupComponent,
     ContractAddressConfigComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
