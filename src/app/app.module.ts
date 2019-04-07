@@ -17,20 +17,22 @@ import {TransactionCostInfoComponent} from './upload/components/transaction-cost
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import { FileInputComponent } from './upload/components/file-input/file-input.component';
-import { UploadButtonComponent } from './upload/components/upload-button/upload-button.component';
+import {FileInputComponent} from './upload/components/file-input/file-input.component';
+import {UploadButtonComponent} from './upload/components/upload-button/upload-button.component';
 import {
   MatButtonModule,
-  MatCardModule,
-  MatGridListModule, MatIconModule,
+  MatCardModule, MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
   MatInputModule,
   MatSidenavModule,
   MatTabsModule,
   MatToolbarModule
 } from "@angular/material";
-import { NoEthBrowserComponent } from './no-eth-browser/no-eth-browser.component';
-import { UploadInputGroupComponent } from './upload/components/upload-input-group/upload-input-group.component';
-import { ContractAddressConfigComponent } from './contract-address-config/contract-address-config.component';
+import {NoEthBrowserComponent} from './no-eth-browser/no-eth-browser.component';
+import {UploadInputGroupComponent} from './upload/components/upload-input-group/upload-input-group.component';
+import {ContractAddressConfigComponent} from './contract-address-config/contract-address-config.component';
+import {HeaderComponent} from './header/header.component';
 
 
 @NgModule({
@@ -49,6 +51,7 @@ import { ContractAddressConfigComponent } from './contract-address-config/contra
     NoEthBrowserComponent,
     UploadInputGroupComponent,
     ContractAddressConfigComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,7 @@ import { ContractAddressConfigComponent } from './contract-address-config/contra
     MatToolbarModule,
     ReactiveFormsModule,
     MatIconModule,
-
+    MatExpansionModule
   ],
   providers: [
     DataNodeService,

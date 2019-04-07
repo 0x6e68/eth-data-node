@@ -1,43 +1,49 @@
-<div *ngIf="dataBlob !== undefined">
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      upload cost informations
+    </mat-panel-title>
 
-      <mat-card>
-        <p>
-          data size (bytes): {{dataSize}}
-        </p>
+  </mat-expansion-panel-header>
 
-        <p>
-          meta size (bytes): {{metaSize}}
-        </p>
+  <mat-card>
+    <p>
+      data size (bytes): {{dataSize}}
+    </p>
 
-        <p>
-          total size (bytes): {{getTotalSize()}}
-        </p>
+    <p>
+      meta size (bytes): {{metaSize}}
+    </p>
 
-        <p>
-          estimated gas: {{estimatedGas}}
-        </p>
-      </mat-card>
+    <p>
+      total size (bytes): {{getTotalSize()}}
+    </p>
 
-      <mat-card>
-        <mat-tab-group>
-          <mat-tab label="standard">
-            <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="standard"></app-transaction-cost-info>
-          </mat-tab>
+    <p>
+      estimated gas: {{estimatedGas}}
+    </p>
+  </mat-card>
 
-          <mat-tab label="safeLow">
-            <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="safeLow"></app-transaction-cost-info>
-          </mat-tab>
+  <mat-card>
+    <mat-tab-group>
+      <mat-tab label="standard">
+        <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="standard"></app-transaction-cost-info>
+      </mat-tab>
 
-          <mat-tab label="fast">
-            <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="fast"></app-transaction-cost-info>
-          </mat-tab>
+      <mat-tab label="safeLow">
+        <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="safeLow"></app-transaction-cost-info>
+      </mat-tab>
 
-          <mat-tab label="fastest">
-            <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="fastest"></app-transaction-cost-info>
-          </mat-tab>
+      <mat-tab label="fast">
+        <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="fast"></app-transaction-cost-info>
+      </mat-tab>
 
-        </mat-tab-group>
-      </mat-card>
+      <mat-tab label="fastest">
+        <app-transaction-cost-info [estimatedGas]="estimatedGas" prizeType="fastest"></app-transaction-cost-info>
+      </mat-tab>
 
-</div>
+    </mat-tab-group>
+  </mat-card>
+
+</mat-expansion-panel>
 

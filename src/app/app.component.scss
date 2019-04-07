@@ -1,11 +1,3 @@
-.page-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-}
-
 .page-container {
   position: absolute;
   top: 80px;
@@ -14,12 +6,16 @@
   right: 0;
 }
 
-.mat-toolbar-row, .mat-toolbar-single-row{
-  height: 80px;
+:host ::ng-deep .mat-sidenav{
+  top: 80px !important;
 }
 
-.ascii-art {
-  font: 500 10px/10px "Courier";
-  font-family: monospace;
-  white-space: pre;
+@media screen and (max-width: 400px){
+  .page-container {
+    top: 45px;
+  }
+
+  :host ::ng-deep .mat-sidenav{
+    top: 45px !important;
+  }
 }
