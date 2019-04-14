@@ -1,4 +1,5 @@
 <file-drop headertext="drop file here" (onFileDrop)="dropped($event)"></file-drop>
-<app-upload-button [dataBlob]="dataBlob"></app-upload-button>
+<app-upload-button [dataBlob]="dataBlob" [metaInformations]="metaInformations"></app-upload-button>
+<app-meta-informations [metaInformations]="metaInformations"></app-meta-informations>
 <app-upload-cost-info [dataBlob]="dataBlob"></app-upload-cost-info>
 

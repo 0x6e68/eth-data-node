@@ -24,4 +24,10 @@ export class TransactionListItem {
     }
   }
 
+  getTitle(): string{
+    if(this.dataBlock.metaData){
+      return this.dataBlock.metaData['title'];
+    }
+  }
+
 }

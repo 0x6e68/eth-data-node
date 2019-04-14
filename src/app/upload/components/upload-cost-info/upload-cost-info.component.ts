@@ -11,6 +11,9 @@ export class UploadCostInfoComponent implements OnChanges, OnInit {
   @Input()
   dataBlob: Blob;
 
+  @Input()
+  metaData: Object;
+
   dataSize: number;
   metaSize: number;
   estimatedGas: number;
@@ -35,18 +38,14 @@ export class UploadCostInfoComponent implements OnChanges, OnInit {
     const reader = new FileReader();
 
     reader.onload = async () => {
-      const metaData = {
-        type: this.dataBlob.type
-      };
-
       const result = reader.result as ArrayBuffer;
 
-      const metaDataJSON = JSON.stringify(metaData);
+      const metaDataJSON = JSON.stringify(this.metaData);
 
       this.metaSize = this.encoder.encode(metaDataJSON).byteLength;
       this.dataSize = result.byteLength;
 
-      await this.updateEstimatedGas(result, metaData);
+      await this.updateEstimatedGas(result, this.metaData);
     };
     reader.readAsArrayBuffer(this.dataBlob);
   }

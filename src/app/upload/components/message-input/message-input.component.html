@@ -2,7 +2,8 @@
   <textarea matInput placeholder="message" type="text" [(ngModel)]="data" (ngModelChange)="dataUpdated($event)"
             class="message-textarea"></textarea>
 </mat-form-field>
-<app-upload-button [dataBlob]="dataBlob"></app-upload-button>
+<app-upload-button [dataBlob]="dataBlob" [metaInformations]="metaInformations"></app-upload-button>
+<app-meta-informations [metaInformations]="metaInformations"></app-meta-informations>
 
 <app-upload-cost-info [dataBlob]="dataBlob"></app-upload-cost-info>
 

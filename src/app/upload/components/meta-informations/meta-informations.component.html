@@ -1,0 +1,19 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      meta information
+    </mat-panel-title>
+
+  </mat-expansion-panel-header>
+
+  <mat-card [formGroup]="metaInformations.getFormArray()">
+    <div *ngFor="let item of metaInformations.getFormArray().controls; let i = index;">
+      <p [formGroupName]="i">
+        <input formControlName="key" placeholder="Item name">
+        <input formControlName="value" placeholder="Item value">
+      </p>
+    </div>
+  </mat-card>
+
+</mat-expansion-panel>
+

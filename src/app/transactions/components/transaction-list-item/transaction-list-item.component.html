@@ -1,5 +1,6 @@
 <mat-card>
   <mat-card-header>
+    <h3 *ngIf="getTitle();">{{getTitle()}}</h3>
     index: {{dataBlock.index}} author: {{dataBlock.author}} dataType: {{getDataType()}}
   </mat-card-header>
 
@@ -10,12 +11,11 @@
     <p *ngIf="isImage()">
       <app-item-image-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-image-data>
     </p>
-    <p >
+    <p>
       <app-item-blob-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-blob-data>
     </p>
   </mat-card-content>
 </mat-card>
-
 
 
 <br/>
