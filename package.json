@@ -7,7 +7,6 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "postinstall": "node ./patches/patch-crypto.js",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -30,7 +29,7 @@
     "rxjs": "~6.3.3",
     "stable": "^0.1.8",
     "wasm-brotli": "^1.0.2",
-    "web3": "^1.0.0-beta.46",
+    "web3": "^1.0.0-beta.52",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
