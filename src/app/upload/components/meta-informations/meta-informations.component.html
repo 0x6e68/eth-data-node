@@ -9,8 +9,8 @@
   <mat-card [formGroup]="metaInformations.getFormArray()">
     <div *ngFor="let item of metaInformations.getFormArray().controls; let i = index;">
       <p [formGroupName]="i">
-        <input formControlName="key" placeholder="Item name">
-        <input formControlName="value" placeholder="Item value">
+        <input formControlName="key" placeholder="key">
+        <input formControlName="value" placeholder="value">
       </p>
     </div>
   </mat-card>
