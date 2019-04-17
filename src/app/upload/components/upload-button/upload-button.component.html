@@ -1,1 +1,7 @@
-<button mat-raised-button color="primary" (click)="readFileAndPostDataTransaction()" [disabled]="!contractReady">Send Transaction</button>
+<button mat-raised-button
+        title="add data to transaction and send"
+        color="primary"
+        (click)="readFileAndPostDataTransaction()"
+        [disabled]="!contractReady">
+  <mat-icon>cloud_upload</mat-icon>
+</button>
