@@ -5,7 +5,6 @@
   <mat-sidenav-container *ngIf="getWeb3State() === WEB3_SERVICE_STATE.READY" hasBackdrop="false">
 
     <mat-sidenav mode="side" opened fixedInViewport="true" [opened]="showSideNav">
-      <app-contract-address-config></app-contract-address-config>
       <app-upload-input-group></app-upload-input-group>
     </mat-sidenav>
 

@@ -1,14 +1,16 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <mat-form-field class="address-input">
-    <input matInput placeholder="DataNode Contract Address" formControlName="address">
-  </mat-form-field>
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="address-input">
+      <input matInput placeholder="DataNode Contract Address" formControlName="address">
+    </mat-form-field>
 
-  <button mat-raised-button color="primary"
-          title="load transactions from contract address"
-          type="submit"
-          [disabled]="!form.valid"
-          class="address-submit">
-    <mat-icon >sync</mat-icon>
-  </button>
-</form>
+    <button mat-raised-button color="primary"
+            title="load transactions from contract address"
+            type="submit"
+            [disabled]="!form.valid"
+            class="address-submit">
+      <mat-icon>sync</mat-icon>
+    </button>
+  </form>
+</div>
 

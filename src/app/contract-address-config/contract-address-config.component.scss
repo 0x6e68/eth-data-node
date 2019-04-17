@@ -1,7 +1,14 @@
-.address-input{
-  min-width: 365px;
+.address-input {
+  min-width: 405px;
+  font: initial;
+  font-family: "Courier New"
 }
 
-.address-submit{
-  margin-left: 0px;
+.address-submit {
+  margin-left: 0;
+}
+
+.container {
+  margin-left: 30px;
+  margin-top: 15px;
 }
