@@ -34,6 +34,7 @@ import {UploadInputGroupComponent} from './upload/components/upload-input-group/
 import {ContractAddressConfigComponent} from './contract-address-config/contract-address-config.component';
 import {HeaderComponent} from './header/header.component';
 import { MetaInformationsComponent } from './upload/components/meta-informations/meta-informations.component';
+import { SidenavAndContainerComponent } from './sidenav-and-container/sidenav-and-container.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { MetaInformationsComponent } from './upload/components/meta-informations
     ContractAddressConfigComponent,
     HeaderComponent,
     MetaInformationsComponent,
+    SidenavAndContainerComponent,
   ],
   imports: [
     BrowserModule,

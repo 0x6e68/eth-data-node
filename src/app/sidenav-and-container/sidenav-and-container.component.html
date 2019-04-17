@@ -1,0 +1,32 @@
+<div class="page-container">
+  <app-no-eth-browser></app-no-eth-browser>
+
+
+  <mat-sidenav-container *ngIf="getWeb3State() === WEB3_SERVICE_STATE.READY" hasBackdrop="false">
+
+    <mat-sidenav mode="side" opened fixedInViewport="true" [opened]="showSideNav">
+      <app-contract-address-config></app-contract-address-config>
+      <app-upload-input-group></app-upload-input-group>
+    </mat-sidenav>
+
+
+    <mat-sidenav-content>
+      <button mat-raised-button color="accent"
+              title="open/close side navigation"
+              [class.show-hide-button-close]="!showSideNav"
+              [class.show-hide-button-open]="showSideNav"
+              class="show-hide-button" (click)="toggleShowHideSideNav()">
+        <mat-icon>
+          <ng-container *ngIf="showSideNav; else openArrow">keyboard_arrow_left</ng-container>
+          <ng-template #openArrow>
+            keyboard_arrow_right
+          </ng-template>
+        </mat-icon>
+
+      </button>
+      <app-transaction-list></app-transaction-list>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
+</div>

@@ -1,23 +1,6 @@
 <app-header></app-header>
+<app-sidenav-and-container></app-sidenav-and-container>
 
-<div class="page-container">
-  <app-no-eth-browser></app-no-eth-browser>
-
-
-  <mat-sidenav-container *ngIf="getWeb3State() === WEB3_SERVICE_STATE.READY" hasBackdrop="false">
-
-    <mat-sidenav #sidenav mode="side" opened fixedInViewport="true">
-      <app-contract-address-config></app-contract-address-config>
-      <app-upload-input-group></app-upload-input-group>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-      <app-transaction-list></app-transaction-list>
-    </mat-sidenav-content>
-
-  </mat-sidenav-container>
-
-</div>
 
 
 

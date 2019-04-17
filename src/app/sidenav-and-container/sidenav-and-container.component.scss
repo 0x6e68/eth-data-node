@@ -1,0 +1,38 @@
+.page-container {
+  position: absolute;
+  top: 80px;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+}
+
+.show-hide-button{
+  position: fixed;
+  top: 100px;
+  opacity: 0.8;
+  z-index: 999;
+}
+
+.show-hide-button-close{
+  left: 10px;
+  transition: 0.5s;
+}
+
+.show-hide-button-open{
+  left: 440px;
+  transition: 0.3s;
+}
+
+:host ::ng-deep .mat-sidenav{
+  top: 80px !important;
+}
+
+@media screen and (max-width: 400px){
+  .page-container {
+    top: 45px;
+  }
+
+  :host ::ng-deep .mat-sidenav{
+    top: 45px !important;
+  }
+}
