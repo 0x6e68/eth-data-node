@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {DataNodeService} from "../services/data-node.service";
 import {environment} from "../../environments/environment.prod";
@@ -23,5 +23,4 @@ export class ContractAddressConfigComponent implements OnInit {
   onSubmit() {
     this.dataNodeService.loadContractAtAddress(this.form.get('address').value);
   }
-
 }

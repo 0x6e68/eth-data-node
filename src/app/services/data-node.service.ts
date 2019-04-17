@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {Web3Service} from "./web3.service";
 import {DATA_NODE_ABI} from "../config/data-node-abi";
 import {DataTransactionModel} from "../models/data-transaction.model";
@@ -6,7 +6,7 @@ import {Subject} from "rxjs";
 import {environment} from "../../environments/environment.prod";
 
 @Injectable()
-export class DataNodeService {
+export class DataNodeService implements OnInit {
 
   private contract;
 
@@ -14,7 +14,6 @@ export class DataNodeService {
   contractReady = this.contractReadySubject.asObservable();
 
   constructor(private web3Service: Web3Service) {
-    this.loadContractAtAddress(environment.contract.defaultAddress);
   }
 
   async loadContractAtAddress(address: string) {
@@ -25,7 +24,6 @@ export class DataNodeService {
 
     this.contractReadySubject.next(this.contractReady !== undefined);
   }
-
 
   async postDataTransaction(data: ArrayBuffer, metaData: Object) {
     const account = await this.web3Service.getAccount();
@@ -44,22 +42,22 @@ export class DataNodeService {
   getPastEventsWithIndicesAndSenderAddress(indices: number[], address: string): Promise<DataTransactionModel[]> {
     const filter = {};
 
-    if(indices){
+    if (indices) {
       filter['index'] = indices;
     }
 
-    if(environment.contract.onlyLoadDataWithOriginAddress){
+    if (environment.contract.onlyLoadDataWithOriginAddress) {
       address = environment.contract.onlyLoadDataWithOriginAddress;
     }
 
-    if(address){
+    if (address) {
       filter['from'] = address;
     }
 
     return this.getPastEventsWithFilter(filter);
   }
 
-  async getNextIndex(): Promise<number>{
+  async getNextIndex(): Promise<number> {
     return this.contract.methods.getNextIndex().call();
   }
 
@@ -108,6 +106,10 @@ export class DataNodeService {
 
 
     return dataModel;
+  }
+
+  ngOnInit(): void {
+    this.loadContractAtAddress(environment.contract.defaultAddress);
   }
 
 

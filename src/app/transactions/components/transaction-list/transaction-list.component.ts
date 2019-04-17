@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {DataTransactionModel} from "../../../models/data-transaction.model";
 import {DataNodeService} from "../../../services/data-node.service";
 import {Web3Service} from "../../../services/web3.service";
+import {environment} from "../../../../environments/environment.prod";
 
 @Component({
   selector: 'app-transaction-list',
@@ -11,7 +12,6 @@ import {Web3Service} from "../../../services/web3.service";
 export class TransactionListComponent implements OnInit {
 
   dataBlocks: DataTransactionModel[] = [];
-  private indexOfLastEntry: number;
   private contractReady = false;
 
 
@@ -24,6 +24,7 @@ export class TransactionListComponent implements OnInit {
       this.loadTransactions();
     });
 
+    this.dataNodeService.loadContractAtAddress(environment.contract.defaultAddress);
   }
 
 
