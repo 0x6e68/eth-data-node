@@ -8,8 +8,6 @@ import {WEB3_SERVICE_STATE, Web3Service} from "../services/web3.service";
 })
 export class SidenavAndContainerComponent implements OnInit {
   WEB3_SERVICE_STATE = WEB3_SERVICE_STATE;
-  title = 'data-node';
-
   showSideNav: boolean = true;
 
   constructor(private web3Service: Web3Service) {
