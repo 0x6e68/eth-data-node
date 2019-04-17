@@ -30,4 +30,8 @@ export class TransactionListItem {
     }
   }
 
+  getEtherScanAdressHref(address: string){
+    return  "https://etherscan.io/address/" + address;
+  }
+
 }

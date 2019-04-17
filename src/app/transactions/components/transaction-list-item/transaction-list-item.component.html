@@ -1,7 +1,10 @@
 <mat-card>
   <mat-card-header>
     <h3 *ngIf="getTitle()">{{getTitle()}}</h3>
-    index: {{dataBlock.index}} author: {{dataBlock.author}} dataType: {{getDataType()}}
+    <a [href]="getEtherScanAdressHref(dataBlock.author)">
+      <img src="https://robohash.org/{{dataBlock.author}}.png?size=40x40&bgset=bg2"/>
+    </a>
+    #{{dataBlock.index}}
   </mat-card-header>
 
   <mat-card-content>
