@@ -8,15 +8,23 @@
   </mat-card-header>
 
   <mat-card-content>
-    <p *ngIf="isText()">
-      <app-item-string-data [data]="dataBlock.data"></app-item-string-data>
-    </p>
-    <p *ngIf="isImage()">
-      <app-item-image-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-image-data>
-    </p>
-    <p>
+
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <div>
+        <ng-template [ngIf]="isText()">
+          <app-item-string-data [data]="dataBlock.data"></app-item-string-data>
+        </ng-template>
+        <ng-template [ngIf]="isImage()">
+          <app-item-image-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-image-data>
+        </ng-template>
+
+      </div>
+    </div>
+
+
+    <div>
       <app-item-blob-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-blob-data>
-    </p>
+    </div>
   </mat-card-content>
 </mat-card>
 
