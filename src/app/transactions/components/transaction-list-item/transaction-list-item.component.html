@@ -9,13 +9,16 @@
 
   <mat-card-content>
 
-    <div>
-      <ng-template [ngIf]="isText()">
-        <app-item-string-data [data]="dataBlock.data"></app-item-string-data>
-      </ng-template>
-      <ng-template [ngIf]="isImage()">
-        <app-item-image-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-image-data>
-      </ng-template>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <div>
+        <ng-template [ngIf]="isText()">
+          <app-item-string-data [data]="dataBlock.data"></app-item-string-data>
+        </ng-template>
+        <ng-template [ngIf]="isImage()">
+          <app-item-image-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-image-data>
+        </ng-template>
+
+      </div>
     </div>
 
 
