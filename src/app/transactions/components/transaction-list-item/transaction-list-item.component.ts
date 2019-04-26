@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {DataTransactionModel} from "../../../models/data-transaction.model";
+import {MimeTypeLookupService} from '../../../mime-type-lookup.service';
 
 @Component({
   selector: 'app-transaction-list-item',
@@ -10,6 +11,8 @@ export class TransactionListItem {
 
   @Input()
   dataBlock: DataTransactionModel;
+
+  constructor(private mimeTypeLookupService: MimeTypeLookupService){}
 
   isText(): boolean{
     return this.getDataType() === 'text/plain';
@@ -24,7 +27,7 @@ export class TransactionListItem {
       return this.dataBlock.metaData['type'];
     }
 
-
+    return this.mimeTypeLookupService.lookupMimeTypeFromUint8Array(this.dataBlock.data) || 'unkown type';
   }
 
   getTitle(): string{
