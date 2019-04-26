@@ -1,9 +1,9 @@
 import {Injectable, OnInit} from '@angular/core';
-import {Web3Service} from "./web3.service";
-import {DATA_NODE_ABI} from "../config/data-node-abi";
-import {DataTransactionModel} from "../models/data-transaction.model";
-import {Subject} from "rxjs";
-import {environment} from "../../environments/environment.prod";
+import {Web3Service} from './web3.service';
+import {DATA_NODE_ABI} from '../config/data-node-abi';
+import {DataTransactionModel} from '../models/data-transaction.model';
+import {Subject} from 'rxjs';
+import {environment} from '../../environments/environment.prod';
 
 @Injectable()
 export class DataNodeService implements OnInit {
@@ -61,6 +61,13 @@ export class DataNodeService implements OnInit {
     return this.contract.methods.getNextIndex().call();
   }
 
+  getEventEmiter(): any {
+    return this.contract.events.DataAdded()
+      .on('error', (event) => {
+        console.log('error', event);
+      });
+  }
+
   private getPastEventsWithFilter(filter: Object): Promise<DataTransactionModel[]> {
     const startFromBlockNumber = environment.contract.searchFromBlockNumber | 0;
 
@@ -74,7 +81,10 @@ export class DataNodeService implements OnInit {
         dataPromises.push(this.extractDataFromEvent(event));
       });
 
-      return Promise.all(dataPromises);
+      return Promise.all(dataPromises)
+        .then((allData: DataTransactionModel[]) => {
+          return allData.sort(((a, b) => b.index - a.index));
+        });
     });
   }
 

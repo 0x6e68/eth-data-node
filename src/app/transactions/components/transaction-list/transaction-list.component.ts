@@ -15,13 +15,18 @@ export class TransactionListComponent implements OnInit {
   private contractReady = false;
 
 
-  constructor(private dataNodeService: DataNodeService, private web3Service: Web3Service, private cdr: ChangeDetectorRef) {
+  constructor(private dataNodeService: DataNodeService) {
   }
 
   ngOnInit() {
     this.dataNodeService.contractReady.subscribe((contractReady) => {
       this.contractReady = contractReady;
       this.loadTransactions();
+
+      this.dataNodeService.getEventEmiter().on('data', (event) => {
+        console.log(event);
+        this.loadTransactions();
+      });
     });
 
     this.dataNodeService.loadContractAtAddress(environment.contract.defaultAddress);
