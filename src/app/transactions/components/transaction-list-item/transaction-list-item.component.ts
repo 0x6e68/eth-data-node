@@ -4,6 +4,7 @@ import {DataTransactionModel} from "../../../models/data-transaction.model";
 @Component({
   selector: 'app-transaction-list-item',
   templateUrl: './transaction-list-item.component.html',
+  styleUrls: ['./transaction-list-item.component.scss']
 })
 export class TransactionListItem {
 
@@ -19,18 +20,22 @@ export class TransactionListItem {
   }
 
   getDataType(): string{
-    if(this.dataBlock.metaData){
+    if(this.dataBlock.metaData && this.dataBlock.metaData['type']){
       return this.dataBlock.metaData['type'];
     }
+
+
   }
 
   getTitle(): string{
-    if(this.dataBlock.metaData){
+    if(this.dataBlock.metaData && this.dataBlock.metaData['title']){
       return this.dataBlock.metaData['title'];
     }
+
+    return 'No Title';
   }
 
-  getEtherScanAdressHref(address: string){
+  getEtherScanAddressHref(address: string){
     return  "https://etherscan.io/address/" + address;
   }
 
