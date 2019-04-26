@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {FileSystemFileEntry, UploadEvent} from "ngx-file-drop";
-import * as fileType from "file-type";
-import {MetaInformationModel} from "../../models/meta-information.model";
+import {FileSystemFileEntry, UploadEvent} from 'ngx-file-drop';
+import {MetaInformationModel} from '../../models/meta-information.model';
+import {MimeTypeLookupService} from '../../../mime-type-lookup.service';
 
 @Component({
   selector: 'app-file-input',
@@ -14,7 +14,7 @@ export class FileInputComponent {
   dataBlob: Blob;
   metaInformations:MetaInformationModel;
 
-  constructor() {
+  constructor(private mimeTypeLookupService:MimeTypeLookupService) {
     this.metaInformations = new MetaInformationModel();
   }
 
@@ -35,15 +35,9 @@ export class FileInputComponent {
     this.metaInformations.createOrUpdateKeyValue({key: 'type', value: mimeType});
 
     if (!mimeType) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const result = reader.result as ArrayBuffer;
-        const fileTypeResult = fileType(new Uint8Array(result));
-        if(fileTypeResult){
-          this.metaInformations.createOrUpdateKeyValue({key: 'type', value: fileTypeResult.mime});
-        }
-      };
-      reader.readAsArrayBuffer(this.dataBlob);
+      this.mimeTypeLookupService.lookupMimeTypeFromBlob(this.dataBlob).then(type => {
+        this.metaInformations.createOrUpdateKeyValue({key: 'type', value: type});
+      });
     }
   }
 }
