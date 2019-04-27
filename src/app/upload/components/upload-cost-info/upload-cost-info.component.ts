@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {DataNodeService} from '../../../services/data-node.service';
+import {MetaInformationModel} from "../../models/meta-information.model";
 
 @Component({
   selector: 'app-upload-cost-info',
@@ -12,7 +13,7 @@ export class UploadCostInfoComponent implements OnChanges, OnInit {
   dataBlob: Blob;
 
   @Input()
-  metaData: Object;
+  metaData: MetaInformationModel;
 
   dataSize: number;
   metaSize: number;
@@ -34,25 +35,25 @@ export class UploadCostInfoComponent implements OnChanges, OnInit {
   }
 
 
-  private async analyzeBlob() {
+  private analyzeBlob() {
     const reader = new FileReader();
 
-    reader.onload = async () => {
+    reader.onload = () => {
       const result = reader.result as ArrayBuffer;
 
-      const metaDataJSON = JSON.stringify(this.metaData);
+      const metaDataJSON = JSON.stringify(this.metaData.getMetaInformationObject());
 
       this.metaSize = this.encoder.encode(metaDataJSON).byteLength;
       this.dataSize = result.byteLength;
 
-      await this.updateEstimatedGas(result, this.metaData);
+      this.updateEstimatedGas(result);
     };
     reader.readAsArrayBuffer(this.dataBlob);
   }
 
 
-  private async updateEstimatedGas(result, metaData) {
-    this.estimatedGas = await this.dataNodeService.estimateGasForPostingDataTransaction(result, metaData);
+  private async updateEstimatedGas(result) {
+    this.estimatedGas = await this.dataNodeService.estimateGasForPostingDataTransaction(result, this.metaData.getMetaInformationObject());
   }
 
   getTotalSize(): number {
