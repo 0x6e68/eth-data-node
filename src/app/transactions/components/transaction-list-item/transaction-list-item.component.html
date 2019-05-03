@@ -2,12 +2,31 @@
   <mat-card-header>
     <div fxLayout="row">
       <div class="header-info-box">
-        <a [href]="getEtherScanAddressHref(dataBlock.author)" target="_blank">
-          <img src="https://robohash.org/{{dataBlock.author}}.png?size=80x80&bgset=bg2"/>
+        <a [href]="getEtherScanAddressHref()" target="_blank">
+          <img title="address: {{dataBlock.author}}"
+               src="https://robohash.org/{{dataBlock.author}}.png?size=80x80&bgset=bg2"/>
         </a>
       </div>
       <div fxLayout="column">
-        <div>#{{dataBlock.index}}</div>
+        <div fxLayout="row">
+          <span>
+          #{{dataBlock.index}}
+          </span>
+
+          <div>
+            <fa name="cube"></fa>
+            {{dataBlock.block}}
+          </div>
+
+          <div>
+            <a [href]="getEtherScanTransactionHref()" title="transaction hash: {{dataBlock.txhash}}"
+               target="_blank" class="transaction-link">
+              <fa name="exchange"></fa>
+              {{getFirstCharactersOfTransactionHash()}}
+            </a>
+          </div>
+
+        </div>
         <div><h2 class="transaction-title">{{getTitle()}}</h2></div>
         <div>{{getDataType()}}</div>
       </div>

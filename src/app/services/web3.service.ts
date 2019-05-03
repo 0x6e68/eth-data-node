@@ -109,6 +109,11 @@ export class Web3Service {
     return web3.eth.getTransaction(hash);
   }
 
+  async getBlock(blockHashOrNumber: string): Promise<any>{
+    const web3 = await this.getWeb3();
+    return web3.eth.getBlock(blockHashOrNumber);
+  }
+
   async extractTransactionData(types:string[], transaction: any): Promise<string[]>{
     const web3 = await this.getWeb3();
     return web3.eth.abi.decodeParameters(types, '0x' +transaction.input.slice(10));

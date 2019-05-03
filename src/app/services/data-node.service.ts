@@ -103,6 +103,8 @@ export class DataNodeService implements OnInit {
     const transaction = await this.web3Service.getTransaction(txHash);
     const rawData = await this.web3Service.extractTransactionData(['bytes', 'string'], transaction);
 
+    const block = await this.web3Service.getBlock(transaction.blockNumber);
+
     const data: Uint8Array = this.web3Service.hexToUint8Array(rawData[0]);
     const metaData = JSON.parse(rawData[1]);
 
@@ -110,6 +112,8 @@ export class DataNodeService implements OnInit {
       data: data,
       author: transaction.from,
       block: transaction.blockNumber,
+      timestamp: block.timestamp,
+      txhash: txHash,
       metaData: metaData,
       index: index
     };

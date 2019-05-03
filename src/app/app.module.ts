@@ -37,6 +37,7 @@ import {ContractAddressConfigComponent} from './contract-address-config/contract
 import {HeaderComponent} from './header/header.component';
 import {MetaInformationsComponent} from './upload/components/meta-informations/meta-informations.component';
 import {SidenavAndContainerComponent} from './sidenav-and-container/sidenav-and-container.component';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import {SidenavAndContainerComponent} from './sidenav-and-container/sidenav-and-
     ReactiveFormsModule,
     MatIconModule,
     MatExpansionModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AngularFontAwesomeModule
   ],
   providers: [
     DataNodeService,

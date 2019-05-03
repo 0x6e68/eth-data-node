@@ -3,5 +3,7 @@ export interface DataTransactionModel{
   data: Uint8Array;
   metaData: Object;
   block: string;
+  timestamp: string;
+  txhash: string;
   index: number;
 }
