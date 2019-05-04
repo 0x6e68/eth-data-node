@@ -29,7 +29,7 @@ import {
   MatInputModule,
   MatSidenavModule,
   MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {NoEthBrowserComponent} from './no-eth-browser/no-eth-browser.component';
 import {UploadInputGroupComponent} from './upload/components/upload-input-group/upload-input-group.component';
@@ -81,7 +81,8 @@ import { MetadataViewComponent } from './transactions/components/transaction-lis
     MatExpansionModule,
     FlexLayoutModule,
     AngularFontAwesomeModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTooltipModule
   ],
   providers: [
     DataNodeService,
