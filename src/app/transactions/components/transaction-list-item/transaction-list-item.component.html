@@ -4,6 +4,7 @@
       <div class="header-info-box">
         <a [href]="getEtherScanAddressHref()" target="_blank">
           <img matTooltip="address: {{dataBlock.author}}"
+               matTooltipClass="custom-tooltip"
                src="https://robohash.org/{{dataBlock.author}}.png?size=80x80&bgset=bg2"/>
         </a>
       </div>
@@ -17,7 +18,9 @@
               {{dataBlock.block}}
             </mat-chip>
             <mat-chip  color="primary" selected="true">
-              <a [href]="getEtherScanTransactionHref()" matTooltip="transaction hash: {{dataBlock.txhash}}"
+              <a [href]="getEtherScanTransactionHref()"
+                 matTooltip="transaction hash: {{dataBlock.txhash}}"
+                 matTooltipClass="custom-tooltip"
                  target="_blank" class="transaction-link">
                 <fa name="exchange"></fa>
                 {{getFirstCharactersOfTransactionHash()}}
