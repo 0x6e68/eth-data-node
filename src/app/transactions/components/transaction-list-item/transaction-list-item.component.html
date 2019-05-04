@@ -9,16 +9,16 @@
       </div>
       <div fxLayout="column">
         <div fxLayout="row">
-          <span>
+          <div class="transaction-header-element">
           #{{dataBlock.index}}
-          </span>
+          </div>
 
-          <div>
+          <div class="transaction-header-element">
             <fa name="cube"></fa>
             {{dataBlock.block}}
           </div>
 
-          <div>
+          <div class="transaction-header-element">
             <a [href]="getEtherScanTransactionHref()" title="transaction hash: {{dataBlock.txhash}}"
                target="_blank" class="transaction-link">
               <fa name="exchange"></fa>
