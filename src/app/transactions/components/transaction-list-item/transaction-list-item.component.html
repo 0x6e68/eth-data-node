@@ -8,27 +8,29 @@
         </a>
       </div>
       <div fxLayout="column">
-        <div fxLayout="row">
-          <div class="transaction-header-element">
-            #{{dataBlock.index}}
-          </div>
+        <div>
 
-          <div class="transaction-header-element">
-            <fa name="cube"></fa>
-            {{dataBlock.block}}
-          </div>
-
-          <div class="transaction-header-element">
-            <a [href]="getEtherScanTransactionHref()" title="transaction hash: {{dataBlock.txhash}}"
-               target="_blank" class="transaction-link">
-              <fa name="exchange"></fa>
-              {{getFirstCharactersOfTransactionHash()}}
-            </a>
-          </div>
+          <mat-chip-list>
+            <mat-chip color="primary">#{{dataBlock.index}}</mat-chip>
+            <mat-chip>
+              <fa name="cube"></fa>
+              {{dataBlock.block}}
+            </mat-chip>
+            <mat-chip color="primary">
+              <a [href]="getEtherScanTransactionHref()" title="transaction hash: {{dataBlock.txhash}}"
+                 target="_blank" class="transaction-link">
+                <fa name="exchange"></fa>
+                {{getFirstCharactersOfTransactionHash()}}
+              </a>
+            </mat-chip>
+          </mat-chip-list>
 
         </div>
-        <div><h2 class="transaction-title">{{getTitle()}}</h2></div>
-        <div>{{getDataType()}}</div>
+
+        <div>
+          <h2 class="transaction-title">{{getTitle()}}</h2>
+        </div>
+
       </div>
     </div>
 
