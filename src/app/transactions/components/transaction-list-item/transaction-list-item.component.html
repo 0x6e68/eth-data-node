@@ -3,32 +3,37 @@
     <div fxLayout="row">
       <div class="header-info-box">
         <a [href]="getEtherScanAddressHref()" target="_blank">
-          <img title="address: {{dataBlock.author}}"
+          <img matTooltip="address: {{dataBlock.author}}"
+               matTooltipClass="custom-tooltip"
                src="https://robohash.org/{{dataBlock.author}}.png?size=80x80&bgset=bg2"/>
         </a>
       </div>
       <div fxLayout="column">
-        <div fxLayout="row">
-          <div class="transaction-header-element">
-          #{{dataBlock.index}}
-          </div>
+        <div>
 
-          <div class="transaction-header-element">
-            <fa name="cube"></fa>
-            {{dataBlock.block}}
-          </div>
-
-          <div class="transaction-header-element">
-            <a [href]="getEtherScanTransactionHref()" title="transaction hash: {{dataBlock.txhash}}"
-               target="_blank" class="transaction-link">
-              <fa name="exchange"></fa>
-              {{getFirstCharactersOfTransactionHash()}}
-            </a>
-          </div>
+          <mat-chip-list>
+            <mat-chip>#{{dataBlock.index}}</mat-chip>
+            <mat-chip>
+              <fa name="cube"></fa>
+              {{dataBlock.block}}
+            </mat-chip>
+            <mat-chip  color="primary" selected="true">
+              <a [href]="getEtherScanTransactionHref()"
+                 matTooltip="transaction hash: {{dataBlock.txhash}}"
+                 matTooltipClass="custom-tooltip"
+                 target="_blank" class="transaction-link">
+                <fa name="exchange"></fa>
+                {{getFirstCharactersOfTransactionHash()}}
+              </a>
+            </mat-chip>
+          </mat-chip-list>
 
         </div>
-        <div><h2 class="transaction-title">{{getTitle()}}</h2></div>
-        <div>{{getDataType()}}</div>
+
+        <div>
+          <h1 class="transaction-title">{{getTitle()}}</h1>
+        </div>
+
       </div>
     </div>
 
@@ -49,8 +54,14 @@
     </div>
 
 
-    <div>
-      <app-item-blob-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-blob-data>
+    <div fxLayout="row">
+      <div>
+        <app-item-download-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-download-data>
+      </div>
+
+      <div class="meta-info-container">
+        <app-metadata-view [metaData]="dataBlock.metaData"></app-metadata-view>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

@@ -12,7 +12,8 @@
     <mat-sidenav-content>
       <div class="inner-content-container">
         <button mat-raised-button color="accent"
-                title="open/close side navigation"
+                matTooltip="open/close side navigation"
+                matTooltipClass="custom-tooltip"
                 [class.show-hide-button-close]="!showSideNav"
                 [class.show-hide-button-open]="showSideNav"
                 class="show-hide-button" (click)="toggleShowHideSideNav()">

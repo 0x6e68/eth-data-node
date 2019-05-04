@@ -7,7 +7,7 @@ import {TransactionListComponent} from './transactions/components/transaction-li
 import {DataNodeService} from './services/data-node.service';
 import {Web3Service} from './services/web3.service';
 import {ItemStringDataComponent} from './transactions/components/transaction-list-item/item-data/string/item-string-data.component';
-import {ItemBlobDataComponent} from './transactions/components/transaction-list-item/item-data/download/item-blob-data.component';
+import {ItemDownloadDataComponent} from './transactions/components/transaction-list-item/item-data/download/item-download-data.component';
 import {TransactionListItem} from './transactions/components/transaction-list-item/transaction-list-item.component';
 import {FileDropModule} from 'ngx-file-drop';
 import {ItemImageDataComponent} from './transactions/components/transaction-list-item/item-data/image/item-image-data.component';
@@ -22,14 +22,14 @@ import {FileInputComponent} from './upload/components/file-input/file-input.comp
 import {UploadButtonComponent} from './upload/components/upload-button/upload-button.component';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatChipsModule,
   MatExpansionModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
   MatSidenavModule,
   MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {NoEthBrowserComponent} from './no-eth-browser/no-eth-browser.component';
 import {UploadInputGroupComponent} from './upload/components/upload-input-group/upload-input-group.component';
@@ -38,6 +38,7 @@ import {HeaderComponent} from './header/header.component';
 import {MetaInformationsComponent} from './upload/components/meta-informations/meta-informations.component';
 import {SidenavAndContainerComponent} from './sidenav-and-container/sidenav-and-container.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { MetadataViewComponent } from './transactions/components/transaction-list-item/metadata-view/metadata-view.component';
 
 
 @NgModule({
@@ -46,7 +47,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     TransactionListComponent,
     ItemStringDataComponent,
     ItemImageDataComponent,
-    ItemBlobDataComponent,
+    ItemDownloadDataComponent,
     TransactionListItem,
     MessageInputComponent,
     UploadCostInfoComponent,
@@ -59,6 +60,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     HeaderComponent,
     MetaInformationsComponent,
     SidenavAndContainerComponent,
+    MetadataViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,9 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     MatIconModule,
     MatExpansionModule,
     FlexLayoutModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatChipsModule,
+    MatTooltipModule
   ],
   providers: [
     DataNodeService,

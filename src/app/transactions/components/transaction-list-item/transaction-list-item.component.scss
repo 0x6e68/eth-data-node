@@ -1,5 +1,5 @@
 .header-info-box{
-  margin-right: 5px
+  margin-right: 10px
 }
 
 h2.transaction-title{
@@ -13,4 +13,12 @@ h2.transaction-title{
 
 .transaction-header-element{
   margin-right: 10px;
+}
+
+.meta-info-container{
+  margin-left: 10px;
+}
+
+::ng-deep .mat-card-header-text{
+  margin: unset;
 }

@@ -1,5 +1,6 @@
 <button mat-raised-button
-        title="add data to transaction and send"
+        matTooltip="add data to transaction and send"
+        matTooltipClass="custom-tooltip"
         color="primary"
         (click)="readFileAndPostDataTransaction()"
         [disabled]="!contractReady">
