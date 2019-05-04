@@ -11,12 +11,12 @@
         <div>
 
           <mat-chip-list>
-            <mat-chip color="primary">#{{dataBlock.index}}</mat-chip>
+            <mat-chip>#{{dataBlock.index}}</mat-chip>
             <mat-chip>
               <fa name="cube"></fa>
               {{dataBlock.block}}
             </mat-chip>
-            <mat-chip color="primary">
+            <mat-chip  color="primary" selected="true">
               <a [href]="getEtherScanTransactionHref()" title="transaction hash: {{dataBlock.txhash}}"
                  target="_blank" class="transaction-link">
                 <fa name="exchange"></fa>
@@ -28,7 +28,7 @@
         </div>
 
         <div>
-          <h2 class="transaction-title">{{getTitle()}}</h2>
+          <h1 class="transaction-title">{{getTitle()}}</h1>
         </div>
 
       </div>
@@ -56,7 +56,7 @@
         <app-item-download-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-download-data>
       </div>
 
-      <div>
+      <div class="meta-info-container">
         <app-metadata-view [metaData]="dataBlock.metaData"></app-metadata-view>
       </div>
     </div>
