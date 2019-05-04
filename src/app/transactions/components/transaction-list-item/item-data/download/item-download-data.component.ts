@@ -2,10 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-item-blob-data',
-  templateUrl: './item-blob-data.component.html',
+  selector: 'app-item-download-data',
+  templateUrl: './item-download-data.component.html',
 })
-export class ItemBlobDataComponent implements OnInit{
+export class ItemDownloadDataComponent implements OnInit{
 
   constructor(private sanitizer: DomSanitizer){}
 

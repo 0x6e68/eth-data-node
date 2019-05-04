@@ -7,7 +7,7 @@ import {TransactionListComponent} from './transactions/components/transaction-li
 import {DataNodeService} from './services/data-node.service';
 import {Web3Service} from './services/web3.service';
 import {ItemStringDataComponent} from './transactions/components/transaction-list-item/item-data/string/item-string-data.component';
-import {ItemBlobDataComponent} from './transactions/components/transaction-list-item/item-data/download/item-blob-data.component';
+import {ItemDownloadDataComponent} from './transactions/components/transaction-list-item/item-data/download/item-download-data.component';
 import {TransactionListItem} from './transactions/components/transaction-list-item/transaction-list-item.component';
 import {FileDropModule} from 'ngx-file-drop';
 import {ItemImageDataComponent} from './transactions/components/transaction-list-item/item-data/image/item-image-data.component';
@@ -46,7 +46,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     TransactionListComponent,
     ItemStringDataComponent,
     ItemImageDataComponent,
-    ItemBlobDataComponent,
+    ItemDownloadDataComponent,
     TransactionListItem,
     MessageInputComponent,
     UploadCostInfoComponent,
