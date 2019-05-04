@@ -22,7 +22,7 @@ import {FileInputComponent} from './upload/components/file-input/file-input.comp
 import {UploadButtonComponent} from './upload/components/upload-button/upload-button.component';
 import {
   MatButtonModule,
-  MatCardModule,
+  MatCardModule, MatChipsModule,
   MatExpansionModule,
   MatGridListModule,
   MatIconModule,
@@ -38,6 +38,7 @@ import {HeaderComponent} from './header/header.component';
 import {MetaInformationsComponent} from './upload/components/meta-informations/meta-informations.component';
 import {SidenavAndContainerComponent} from './sidenav-and-container/sidenav-and-container.component';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import { MetadataViewComponent } from './transactions/components/transaction-list-item/metadata-view/metadata-view.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     HeaderComponent,
     MetaInformationsComponent,
     SidenavAndContainerComponent,
+    MetadataViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,8 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
     MatIconModule,
     MatExpansionModule,
     FlexLayoutModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    MatChipsModule
   ],
   providers: [
     DataNodeService,

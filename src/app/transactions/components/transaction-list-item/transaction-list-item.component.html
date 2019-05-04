@@ -10,7 +10,7 @@
       <div fxLayout="column">
         <div fxLayout="row">
           <div class="transaction-header-element">
-          #{{dataBlock.index}}
+            #{{dataBlock.index}}
           </div>
 
           <div class="transaction-header-element">
@@ -49,8 +49,14 @@
     </div>
 
 
-    <div>
-      <app-item-download-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-download-data>
+    <div fxLayout="row">
+      <div>
+        <app-item-download-data [data]="dataBlock.data" [dataType]="getDataType()"></app-item-download-data>
+      </div>
+
+      <div>
+        <app-metadata-view [metaData]="dataBlock.metaData"></app-metadata-view>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>
