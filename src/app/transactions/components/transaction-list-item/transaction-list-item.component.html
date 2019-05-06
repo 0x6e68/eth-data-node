@@ -9,15 +9,20 @@
         </a>
       </div>
       <div fxLayout="column">
+
+        <div>
+          <h1 class="transaction-title">{{getTitle()}}</h1>
+        </div>
+
         <div>
 
           <mat-chip-list>
-            <mat-chip>#{{dataBlock.index}}</mat-chip>
-            <mat-chip>
+            <mat-chip class="slim-mat-chip">#{{dataBlock.index}}</mat-chip>
+            <mat-chip class="slim-mat-chip">
               <fa name="cube"></fa>
               {{dataBlock.block}}
             </mat-chip>
-            <mat-chip  color="primary" selected="true">
+            <mat-chip  color="primary" selected="true" class="slim-mat-chip">
               <a [href]="getEtherScanTransactionHref()"
                  matTooltip="transaction hash: {{dataBlock.txhash}}"
                  matTooltipClass="custom-tooltip"
@@ -30,9 +35,7 @@
 
         </div>
 
-        <div>
-          <h1 class="transaction-title">{{getTitle()}}</h1>
-        </div>
+
 
       </div>
     </div>

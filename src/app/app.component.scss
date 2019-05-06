@@ -2,3 +2,9 @@
 ::ng-deep .custom-tooltip {
   font-size: 14px;
 }
+
+
+::ng-deep .slim-mat-chip {
+  height: 25px !important;
+  min-height: unset !important;
+}
