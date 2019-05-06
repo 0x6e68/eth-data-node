@@ -20,13 +20,14 @@
             <input matInput formControlName="value" placeholder="value">
           </mat-form-field>
 
-          <button mat-raised-button
-                  matTooltip="add data to transaction and send"
+          <mat-chip
+                  matTooltip="remove meta information"
                   matTooltipClass="custom-tooltip"
                   color="primary"
+                  class="slim-mat-chip remove-meta-chip"
                   (click)="removeMetaInfoEntry(i)">
-            <mat-icon>cloud_upload</mat-icon>
-          </button>
+            x
+          </mat-chip>
         </div>
 
       </div>
