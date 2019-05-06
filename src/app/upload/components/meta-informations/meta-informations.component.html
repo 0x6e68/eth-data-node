@@ -7,17 +7,31 @@
   </mat-expansion-panel-header>
 
   <mat-card [formGroup]="metaInformations.getFormArray()">
-    <div *ngFor="let item of metaInformations.getFormArray().controls; let i = index;">
-      <p [formGroupName]="i">
-        <mat-form-field class="key-value">
-          <input matInput formControlName="key" placeholder="key">
-        </mat-form-field>
 
-        <mat-form-field class="key-value">
-          <input matInput formControlName="value" placeholder="value">
-        </mat-form-field>
-      </p>
+    <div fxLayout="column">
+      <div *ngFor="let item of metaInformations.getFormArray().controls; let i = index;">
+
+        <div [formGroupName]="i" fxLayout="row">
+          <mat-form-field class="key-value">
+            <input matInput formControlName="key" placeholder="key">
+          </mat-form-field>
+
+          <mat-form-field class="key-value">
+            <input matInput formControlName="value" placeholder="value">
+          </mat-form-field>
+
+          <button mat-raised-button
+                  matTooltip="add data to transaction and send"
+                  matTooltipClass="custom-tooltip"
+                  color="primary"
+                  (click)="removeMetaInfoEntry(i)">
+            <mat-icon>cloud_upload</mat-icon>
+          </button>
+        </div>
+
+      </div>
     </div>
+
   </mat-card>
 
 </mat-expansion-panel>

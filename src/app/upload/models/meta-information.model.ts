@@ -15,6 +15,8 @@ export class MetaInformationModel {
 
   private metaInformation: FormArray;
 
+  private addedEmptyControl: boolean;
+
   constructor() {
     this.metaInformation = new FormArray([]);
     this.initEmptyKeyValueGroup();
@@ -22,11 +24,25 @@ export class MetaInformationModel {
 
   private initEmptyKeyValueGroup() {
     this.createOrUpdateKeyValue({key: '', value: ''});
+
     this.metaInformation.valueChanges.subscribe(() => {
-      if (!this.getGroupOfKey('')) {
-        this.createOrUpdateKeyValue({key: '', value: ''});
-      }
+      this.addEmptyControlIfNotAlreayPresent();
     });
+  }
+
+  private addEmptyControlIfNotAlreayPresent(){
+    if(this.addedEmptyControl){
+      this.addedEmptyControl = false;
+      return;
+    }
+
+    if (!this.getGroupOfKey('')) {
+      this.addedEmptyControl = true;
+      this.metaInformation.insert(0, new FormGroup({
+        key: new FormControl(''),
+        value: new FormControl(''),
+      },));
+    }
   }
 
   private pushNewKeyValueGroup(keyValue: KeyValue) {
@@ -79,6 +95,10 @@ export class MetaInformationModel {
     if (groupAndIndex) {
       this.metaInformation.removeAt(groupAndIndex.index);
     }
+  }
+
+  removeAtIndex(index: number){
+    this.metaInformation.removeAt(index);
   }
 
   getMetaInformationObject(): Object {

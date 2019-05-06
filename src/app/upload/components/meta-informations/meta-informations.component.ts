@@ -17,5 +17,9 @@ export class MetaInformationsComponent implements OnInit {
   ngOnInit() {
   }
 
+  removeMetaInfoEntry(i){
+    this.metaInformations.removeAtIndex(i);
+  }
+
 
 }
