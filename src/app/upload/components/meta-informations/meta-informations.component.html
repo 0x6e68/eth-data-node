@@ -20,14 +20,12 @@
             <input matInput formControlName="value" placeholder="value">
           </mat-form-field>
 
-          <mat-chip matTooltip="remove meta information"
-                    selected="true"
-                  matTooltipClass="custom-tooltip"
-                  color="primary"
-                  class="slim-mat-chip remove-meta-chip"
-                  (click)="removeMetaInfoEntry(i)">
-            x
-          </mat-chip>
+            <fa name="times-circle"
+                size="lg"
+                inverse="true"
+                class="remove-meta-button"
+                matTooltip="remove meta information"
+                matTooltipClass="custom-tooltip"></fa>
         </div>
 
       </div>
