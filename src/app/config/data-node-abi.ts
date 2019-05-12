@@ -1,5 +1,19 @@
 export const DATA_NODE_ABI = [
   {
+    "constant": true,
+    "inputs": [],
+    "name": "getNextIndex",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "constant": false,
     "inputs": [
       {
@@ -13,8 +27,8 @@ export const DATA_NODE_ABI = [
     ],
     "name": "postDataTransaction",
     "outputs": [],
-    "payable": true,
-    "stateMutability": "payable",
+    "payable": false,
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -54,19 +68,5 @@ export const DATA_NODE_ABI = [
     ],
     "name": "DataAdded",
     "type": "event"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "getNextIndex",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
   }
 ];

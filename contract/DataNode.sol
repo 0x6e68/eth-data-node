@@ -1,9 +1,6 @@
 pragma solidity ^0.5.2;
 
-contract DataNode {
-  constructor() public {}
-
-  uint private index = 1;
+interface DataNodeInterface {
 
   event DataAdded(
     string metaData,
@@ -13,13 +10,25 @@ contract DataNode {
     address indexed from
   );
 
-  function postDataTransaction(bytes calldata data, string calldata metaData) external payable {
+  function postDataTransaction(bytes calldata data, string calldata metaData) external;
+  function getNextIndex() external view returns (uint);
+
+}
+
+contract DataNode is DataNodeInterface {
+  constructor() public {}
+
+  uint private index = 1;
+
+  function postDataTransaction(bytes calldata data, string calldata metaData) external {
     emit DataAdded(metaData, data.length, index, index, msg.sender);
     index++;
   }
 
-  function getNextIndex() public view returns (uint){
+  function getNextIndex() external view returns (uint){
     return index;
   }
 
 }
+
+
