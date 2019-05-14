@@ -17,7 +17,12 @@
         <div>
 
           <mat-chip-list>
-            <mat-chip class="slim-mat-chip">#{{dataBlock.index}}</mat-chip>
+            <mat-chip class="slim-mat-chip">
+              #{{dataBlock.index}}
+            </mat-chip>
+            <mat-chip class="slim-mat-chip">
+              {{dataBlock.timestamp + '000' | date }}
+            </mat-chip>
             <mat-chip class="slim-mat-chip">
               <fa name="cube"></fa>
               {{dataBlock.block}}
