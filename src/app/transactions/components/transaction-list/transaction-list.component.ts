@@ -1,7 +1,6 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DataTransactionModel} from "../../../models/data-transaction.model";
 import {DataNodeService} from "../../../services/data-node.service";
-import {Web3Service} from "../../../services/web3.service";
 import {environment} from "../../../../environments/environment.prod";
 
 @Component({
@@ -23,10 +22,12 @@ export class TransactionListComponent implements OnInit {
       this.contractReady = contractReady;
       this.loadTransactions();
 
-      this.dataNodeService.getEventEmiter().on('data', (event) => {
-        console.log(event);
-        this.loadTransactions();
-      });
+      const eventEmiter = this.dataNodeService.getEventEmiter();
+      if(eventEmiter){
+        eventEmiter.on('data', (event) => {
+          this.loadTransactions();
+        });
+      }
     });
 
     this.dataNodeService.loadContractAtAddress(environment.contract.defaultAddress);

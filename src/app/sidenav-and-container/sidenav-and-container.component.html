@@ -2,10 +2,17 @@
   <app-no-eth-browser></app-no-eth-browser>
 
 
-  <mat-sidenav-container *ngIf="getWeb3State() === WEB3_SERVICE_STATE.READY" hasBackdrop="false">
+  <mat-sidenav-container *ngIf="isWeb3Ready()" hasBackdrop="false">
 
     <mat-sidenav mode="side" opened fixedInViewport="true" [opened]="showSideNav">
-      <app-upload-input-group></app-upload-input-group>
+      <div *ngIf="isWeb3ReadOnly(); else uploadNavigation">
+        An Infura Enpoint is used to show you the content of this DataNode.
+      </div>
+
+      <ng-template> #uploadNavigation>
+        <app-upload-input-group></app-upload-input-group>
+      </ng-template>
+
     </mat-sidenav>
 
 

@@ -1,5 +1,5 @@
 import {Injectable, OnInit} from '@angular/core';
-import {Web3Service} from './web3.service';
+import {WEB3_SERVICE_STATE, Web3Service} from './web3.service';
 import {DATA_NODE_ABI} from '../config/data-node-abi';
 import {DataTransactionModel} from '../models/data-transaction.model';
 import {Subject} from 'rxjs';
@@ -62,6 +62,10 @@ export class DataNodeService implements OnInit {
   }
 
   getEventEmiter(): any {
+    if(this.web3Service.state !== WEB3_SERVICE_STATE.READY){
+      return null;
+    }
+
     return this.contract.events.DataAdded()
       .on('error', (event) => {
         console.log('error', event);
