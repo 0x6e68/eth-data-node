@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   contract: {
-    defaultAddress: '0xd07B5daCB15B931daC559a36E0aB67f433ccF7a6',
+    defaultAddress: '',
     searchFromBlockNumber: 0,
     onlyLoadDataWithOriginAddress: null
   },
