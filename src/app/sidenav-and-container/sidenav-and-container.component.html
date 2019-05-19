@@ -11,20 +11,7 @@
 
     <mat-sidenav-content>
       <div class="inner-content-container">
-        <button mat-raised-button color="accent"
-                matTooltip="open/close side navigation"
-                matTooltipClass="custom-tooltip"
-                [class.show-hide-button-close]="!showSideNav"
-                [class.show-hide-button-open]="showSideNav"
-                class="show-hide-button" (click)="toggleShowHideSideNav()">
-          <mat-icon>
-            <ng-container *ngIf="showSideNav; else openArrow">keyboard_arrow_left</ng-container>
-            <ng-template #openArrow>
-              keyboard_arrow_right
-            </ng-template>
-          </mat-icon>
 
-        </button>
         <app-transaction-list></app-transaction-list>
 
       </div>
@@ -32,4 +19,19 @@
 
   </mat-sidenav-container>
 
+
+  <button mat-raised-button color="accent"
+          matTooltip="open/close side navigation"
+          matTooltipClass="custom-tooltip"
+          [class.show-hide-button-close]="!showSideNav"
+          [class.show-hide-button-open]="showSideNav"
+          class="show-hide-button" (click)="toggleShowHideSideNav()">
+    <mat-icon>
+      <ng-container *ngIf="showSideNav; else openArrow">keyboard_arrow_left</ng-container>
+      <ng-template #openArrow>
+        keyboard_arrow_right
+      </ng-template>
+    </mat-icon>
+
+  </button>
 </div>
