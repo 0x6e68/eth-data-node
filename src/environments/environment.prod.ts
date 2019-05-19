@@ -5,5 +5,6 @@ export const environment = {
     searchFromBlockNumber: 7229555,
     onlyLoadDataWithOriginAddress: null
   },
+  infuraEndpoint: '',//'https://mainnet.infura.io/v3/',
 
 };
