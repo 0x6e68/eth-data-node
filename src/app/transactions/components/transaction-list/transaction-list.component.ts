@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataTransactionModel} from "../../../models/data-transaction.model";
 import {DataNodeService} from "../../../services/data-node.service";
-import {environment} from "../../../../environments/environment.prod";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-transaction-list',

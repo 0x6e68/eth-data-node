@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-demo": "ng serve --configuration=demo",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -28,13 +29,14 @@
     "core-js": "^2.5.4",
     "file-type": "^10.10.0",
     "font-awesome": "^4.7.0",
+    "hammerjs": "^2.0.8",
     "ngx-file-drop": "^5.0.0",
     "rxjs": "~6.3.3",
     "stable": "^0.1.8",
+    "tar": ">=4.4.2",
     "wasm-brotli": "^1.0.2",
     "web3": "^1.0.0-beta.52",
-    "zone.js": "~0.8.26",
-    "tar": ">=4.4.2"
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",

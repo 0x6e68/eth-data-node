@@ -3,7 +3,7 @@ import {WEB3_SERVICE_STATE, Web3Service} from './web3.service';
 import {DATA_NODE_ABI} from '../config/data-node-abi';
 import {DataTransactionModel} from '../models/data-transaction.model';
 import {Subject} from 'rxjs';
-import {environment} from '../../environments/environment.prod';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class DataNodeService implements OnInit {
@@ -17,6 +17,13 @@ export class DataNodeService implements OnInit {
   }
 
   async loadContractAtAddress(address: string) {
+
+    if(!address || address === ''){
+      console.error('invalid or empty contract address');
+      return;
+    }
+
+
     const web3 = await this.web3Service.getWeb3();
     const contract = new web3.eth.Contract(DATA_NODE_ABI, address);
     contract.setProvider(web3.currentProvider);
@@ -25,21 +32,34 @@ export class DataNodeService implements OnInit {
     this.contractReadySubject.next(this.contractReady !== undefined);
   }
 
+
   async postDataTransaction(data: ArrayBuffer, metaData: Object) {
     const account = await this.web3Service.getAccount();
 
-    const transaction = await this.createTransaction(data, metaData);
-    transaction.send({from: account});
+    const transaction = this.createTransaction(data, metaData);
+
+    if (transaction) {
+      transaction.send({from: account});
+    }
   }
 
   async estimateGasForPostingDataTransaction(data: ArrayBuffer, metaData: Object): Promise<number> {
     const account = await this.web3Service.getAccount();
 
     const transaction = this.createTransaction(data, metaData);
-    return transaction.estimateGas({from: account});
+
+    if (transaction) {
+      return transaction.estimateGas({from: account});
+    }
   }
 
   getPastEventsWithIndicesAndSenderAddress(indices: number[], address: string): Promise<DataTransactionModel[]> {
+    if (!this.contract) {
+      return new Promise(resolve => {
+        return resolve([])
+      });
+    }
+
     const filter = {};
 
     if (indices) {
@@ -58,11 +78,13 @@ export class DataNodeService implements OnInit {
   }
 
   async getNextIndex(): Promise<number> {
-    return this.contract.methods.getNextIndex().call();
+    if (this.contract) {
+      return this.contract.methods.getNextIndex().call();
+    }
   }
 
   getEventEmiter(): any {
-    if(this.web3Service.state !== WEB3_SERVICE_STATE.READY){
+    if (this.web3Service.state !== WEB3_SERVICE_STATE.READY) {
       return null;
     }
 
@@ -94,6 +116,10 @@ export class DataNodeService implements OnInit {
 
 
   private createTransaction(data: ArrayBuffer, metaData: Object) {
+    if (!this.contract) {
+      return undefined;
+    }
+
     const bytesString = this.web3Service.arrayBufferToHex(data);
     const metaDataJson = metaData !== undefined ? JSON.stringify(metaData) : '{}';
 

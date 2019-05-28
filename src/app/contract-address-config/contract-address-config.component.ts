@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {DataNodeService} from "../services/data-node.service";
-import {environment} from "../../environments/environment.prod";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-contract-address-config',
@@ -12,7 +12,8 @@ export class ContractAddressConfigComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private dataNodeService: DataNodeService) { }
+  constructor(private dataNodeService: DataNodeService) {
+  }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -21,6 +22,9 @@ export class ContractAddressConfigComponent implements OnInit {
   }
 
   onSubmit() {
-    this.dataNodeService.loadContractAtAddress(this.form.get('address').value);
+    const address = this.form.get('address').value;
+    if (address && address !== '') {
+      this.dataNodeService.loadContractAtAddress(address);
+    }
   }
 }

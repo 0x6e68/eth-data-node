@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Web3Service, WEB3_SERVICE_STATE} from './services/web3.service';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +6,8 @@ import {Web3Service, WEB3_SERVICE_STATE} from './services/web3.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  WEB3_SERVICE_STATE = WEB3_SERVICE_STATE;
-  title = 'data-node';
 
-  constructor(private web3Service: Web3Service) {
+  constructor() {
   }
 
-  getWeb3State(): WEB3_SERVICE_STATE {
-    return this.web3Service.state;
-  }
 }
