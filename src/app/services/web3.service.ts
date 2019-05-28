@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as W3 from 'web3';
 import {bytesToHex, fromWei, hexToBytes, hexToString, stringToHex, toWei, Unit} from "web3-utils";
-import {environment} from "../../environments/environment.prod";
+import {environment} from "../../environments/environment";
 
 const Web3 = require('web3'); // tslint:disable-line
 
@@ -23,7 +23,6 @@ export class Web3Service {
   private async trySetupWeb3WithNewMetamask(provider: any): Promise<any> {
     try {
       const web3: W3.default = new Web3(provider);
-      // Request account access if needed
       this.state = WEB3_SERVICE_STATE.TRY_GET_ACCESS_FROM_METAMASK;
       await provider.enable();
       this.state = WEB3_SERVICE_STATE.READY;
@@ -53,6 +52,7 @@ export class Web3Service {
       switch (this.state) {
         case WEB3_SERVICE_STATE.NO_WEB3_FOUND:
         case WEB3_SERVICE_STATE.ERROR:
+
 
           this.state = WEB3_SERVICE_STATE.READY_READ_ONLY;
           this.web3 = new Promise(resolve => {
